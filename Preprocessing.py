@@ -1,67 +1,27 @@
-# ASK DON:
-# will all attorneys be from the state we get the data from?
-# what specific attributes are we uploading? (must be persistent across all states)
-# how much error checking
-
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
 import json
 
+# ------------ Temporary Frontend --------------
 def getExcel():
     global dataframe
     import_file_path = filedialog.askopenfilename()
     dataframe = pd.read_excel(import_file_path)
 
 def retrieve_input():
-    # global barNum
-    # global fName
-    # global lName
-    # global phone
-    # global email
     global stateName
-
-    # barNum = BarNumber_Input.get("1.0","end-1c")
-    # print(barNum)
-    # fName = FirstName_Input.get("1.0","end-1c")
-    # print(fName)
-    # lName = LastName_Input.get("1.0","end-1c")
-    # print(lName)
-    # phone = PhoneNumber_Input.get("1.0","end-1c")
-    # print(phone)
-    # email = Email_Input.get("1.0","end-1c")
-    # print(email)
     stateName = StateName_Input.get("1.0","end-1c")
     root.destroy()
-
 
 root= tk.Tk()
 canvas = tk.Canvas(root, width = 400, height = 400, bg = 'lightsteelblue')
 canvas.pack()
+
 #Create Excel File Upload
 browseButton_Excel = tk.Button(text='Import Excel File', command=getExcel, bg='green', fg='white', font=('helvetica', 12, 'bold'))
 canvas.create_text(200, 20, fill="darkblue", text="Please Upload the Attorney Data File")
 canvas.create_window(200, 50, window=browseButton_Excel)
-# #Create Bar Number Input
-# BarNumber_Input = tk.Text(root, height=1, width=5)
-# canvas.create_text(150, 100, fill="darkblue", text="What Column Contains the Bar Number?")
-# canvas.create_window(300, 100, window=BarNumber_Input)
-# #Create First Name Input
-# FirstName_Input = tk.Text(root, height=1, width=5)
-# canvas.create_text(150, 130, fill="darkblue", text="What Column Contains the First Name?")
-# canvas.create_window(300, 130, window=FirstName_Input)
-# #Create Last Name Input
-# LastName_Input = tk.Text(root, height=1, width=5)
-# canvas.create_text(150, 160, fill="darkblue", text="What Column Contains the Last Name?")
-# canvas.create_window(300, 160, window=LastName_Input)
-# #Create Phone Input
-# PhoneNumber_Input = tk.Text(root, height=1, width=5)
-# canvas.create_text(150, 190, fill="darkblue", text="What Column Contains the Phone Number?")
-# canvas.create_window(300, 190, window=PhoneNumber_Input)
-# #Create Email Input
-# Email_Input = tk.Text(root, height=1, width=5)
-# canvas.create_text(150, 220, fill="darkblue", text="What Column Contains the Email?")
-# canvas.create_window(300, 220, window=Email_Input)
 
 #Create Statename Input
 StateName_Input = tk.Text(root, height=1, width=5)
@@ -73,76 +33,205 @@ canvas.create_window(200, 290, window=processFileButton)
 
 root.mainloop()
 
-#---------DataFrame Creation-----------
+
+# ------------ Merging Functions --------------
+def processAddress(columns, df):
+    if(isinstance(columns, int)):
+        return (dataframe.iloc[:, columns-1])
+    else:
+        addresses = []
+        for x in range(len(dataframe)):
+            address_temp = ""
+            for c in columns:
+                address_temp += str(dataframe.loc[x][c-1]).strip() + " "
+            addresses.append(address_temp.strip())
+        return addresses
+
+def processName(columns, df):
+    if(isinstance(columns, int)):
+        return (dataframe.iloc[:, columns-1])
+    else:
+        names = []
+        for x in range(len(dataframe)):
+            name_temp = ""
+            for c in columns:
+                name_temp += str(dataframe.loc[x][c-1]).strip() + " "
+            names.append(name_temp)
+        return names
+
+def secondaryInfoColumns(mapping, dataframe):
+    length = len(dataframe.iloc[0])
+    secInfo = []
+    for i in range(1, length+1):
+        contains = False
+        for m in mapping.values():
+            if(isinstance(m, int)):
+                if(m == i):
+                    contains = True
+            else:
+                if(i in m):
+                    contains = True
+        if(not contains):
+                secInfo.append(i)
+    return secInfo
+
+
+#--------- DataFrame Creation -----------
 mapping = {
   "barNum": 1,
   "dateOfAdmission" : 2,
-  "name" : 3,
-  "fName": 4,
-  "lName": 5,
-  "status" : 6,
-  "address1" : 7,
-  "address2" : 8,
-  "city" : 9,
-  "state" : 10,
-  "zipCode" : 11,
-  "zipCode4" : 12,
-  "district" : 13,
-  "county" : 14,
-  "phone" : 15,
+  "name" : [5, 4],
+  "phone1" : 15,
+  "phone2" : -1,
+  "email1" : 17,
+  "email2" : -1,
+  "address1" : [7,8,9,10,11,12],
+  "address2" : -1,
+  "firm" : 18,
   "fax" : 16,
-  "email" : 17,
-  "lawFirm" : 18,
-  "lawSchool" : 19
+  "license" : -1,
+  "status" : 6
 }
 
-try:
-    barNumberIndexes = []
+barNumberIndexes = []
+if(mapping["barNum"] != -1):
     for barNum in (dataframe.iloc[:, mapping["barNum"] - 1]):
         barNumberIndexes.append(stateName + "_" + str(barNum))
+else:
+    for i in range(len(dataframe)):
+        barNumberIndexes.append("NA")
 
-    firstNames = []
-    for x in (dataframe.iloc[:, mapping["fName"] - 1]):
-        firstNames.append(x.strip())
+datesOfAdmission = []
+if(mapping["dateOfAdmission"] != -1):
+    for x in (dataframe.iloc[:, mapping["dateOfAdmission"] - 1]):
+        datesOfAdmission.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        datesOfAdmission.append("NA")
 
-    lastNames = []
-    for x in (dataframe.iloc[:, mapping["lName"] - 1]):
-        lastNames.append(x.strip())
+names = []
+if(mapping["name"] != -1):
+    names = processName(mapping["name"], dataframe)
+else:
+    for i in range(len(dataframe)):
+        names.append("NA")
 
-    phoneNumbers = []
-    for x in (dataframe.iloc[:, mapping["phone"] - 1]):
-        phoneNumbers.append(str(x))
+phones1 = []
+if(mapping["phone1"] != -1):
+    for x in (dataframe.iloc[:, mapping["phone1"] - 1]):
+        phones1.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        phones1.append("NA")
 
-    emails = []
-    for x in (dataframe.iloc[:, mapping["email"] - 1]):
-        emails.append(str(x).strip())
-except(Exception e):
-    print("Error while pulling data from excel file")
+phones2 = []
+if(mapping["phone2"] != -1):
+    for x in (dataframe.iloc[:, mapping["phone2"] - 1]):
+        phones2.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        phones2.append("NA")
 
+emails1 = []
+if(mapping["email1"] != -1):
+    for x in (dataframe.iloc[:, mapping["email1"] - 1]):
+        emails1.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        emails1.append("NA")
+
+emails2 = []
+if(mapping["email2"] != -1):
+    for x in (dataframe.iloc[:, mapping["email2"] - 1]):
+        emails2.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        emails2.append("NA")
+
+addresses1 = []
+if(mapping["address1"] != -1):
+    addresses1 = processAddress(mapping["address1"], dataframe)
+else:
+    for i in range(len(dataframe)):
+        addresses1.append("NA")
+
+addresses2 = []
+if(mapping["address2"] != -1):
+    addresses2 = processAddress(mapping["address2"], dataframe)
+else:
+    for i in range(len(dataframe)):
+        addresses2.append("NA")
+
+firms = []
+if(mapping["firm"] != -1):
+    for x in (dataframe.iloc[:, mapping["firm"] - 1]):
+        firms.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        firms.append("NA")
+
+faxes = []
+if(mapping["fax"] != -1):
+    for x in (dataframe.iloc[:, mapping["fax"] - 1]):
+        faxes.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        faxes.append("NA")
+
+licenses = []
+if(mapping["license"] != -1):
+    for x in (dataframe.iloc[:, mapping["license"] - 1]):
+        licenses.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        licenses.append("NA")
+
+statuses = []
+if(mapping["status"] != -1):
+    for x in (dataframe.iloc[:, mapping["status"] - 1]):
+        statuses.append(str(x).strip())
+else:
+    for i in range(len(dataframe)):
+        statuses.append("NA")
+
+
+secInfoColumns = secondaryInfoColumns(mapping, dataframe)
 secondaryInfo = []
-for x in range(len(dataframe)):
-    list = dataframe.iloc[x].values.flatten().tolist()
-    list_formatted = []
-    for l in list:
-        list_formatted.append(str(l).strip())
-    secondaryInfo.append(str(list_formatted))
+if(len(secInfoColumns) != 0):
+    for x in range(len(dataframe)):
+        secinfo_temp = ""
+        for c in secInfoColumns:
+            secinfo_temp += dataframe.columns[c-1] + ": " + str(dataframe.loc[x][c-1]).strip() + ", "
+        secondaryInfo.append(secinfo_temp[:-2])
+else:
+    for i in range(len(dataframe)):
+        secondaryInfo.append("NA")
+
 
 #-------------JSON Creation-------------
 class Attorney:
-    def __init__(self, BarNumberIndex, FirstName, LastName, Phone, Email, SecondaryInfo):
+    def __init__(self, BarNumberIndex, DateOfAdmission, Name, Phone1, Phone2, Email1, Email2, Address1, Address2, Firm, Fax, License, Status, SecondaryInfo):
         self.BarNumberIndex = BarNumberIndex
-        self.FirstName = FirstName
-        self.LastName = LastName
-        self.Phone = Phone
-        self.Email = Email
+        self.DateOfAdmission = DateOfAdmission
+        self.Name = Name
+        self.Phone1 = Phone1
+        self.Phone2 = Phone2
+        self.Email1 = Email1
+        self.Email2 = Email2
+        self.Address1 = Address1
+        self.Address2 = Address2
+        self.Firm = Firm
+        self.Fax = Fax
+        self.License = License
+        self.Status = Status
         self.SecondaryInfo = SecondaryInfo
 
 def obj_dict(obj):
     return obj.__dict__
 
 Attorneys = []
-for i in range(len(barNumberIndexes)):
-    temp = Attorney(barNumberIndexes[i], firstNames[i], lastNames[i], phoneNumbers[i], emails[i], secondaryInfo[i])
+for i in range(len(dataframe)):
+    temp = Attorney(barNumberIndexes[i], datesOfAdmission[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], secondaryInfo[i])
     Attorneys.append(temp)
 
 json_string = json.dumps(Attorneys, default=obj_dict)
