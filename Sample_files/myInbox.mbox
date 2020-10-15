@@ -1,0 +1,698 @@
+From "from@domain.com" Thu Jan 1 00:00:00 1970
+Status: RO
+From: "Sender Name" <from@domain.com>
+Subject: New message created by Aspose.Email for Java(Aspose.Email Evaluation)
+To: Recipient 1;Recipient 2
+Cc: Recipient 3;Recipient 4
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="--boundary-LibPST-iamunique-1300574059_-_-"
+
+
+----boundary-LibPST-iamunique-1300574059_-_-
+Content-Type: text/plain; charset="utf-8"
+
+This is an evaluation copy of Aspose.Email for Java 
+ View EULA Online: http://www.aspose.com/corporate/purchase/end-user-license-agreement.aspx
+------------------------------
+
+This line is in bold.
+
+This line is in blue color
+----boundary-LibPST-iamunique-1300574059_-_---
+
+From 1531703777946134498@xxx Fri Apr 15 18:55:53 +0000 2016
+X-GM-THRID: 1531703777946134498
+X-Gmail-Labels: Inbox
+Delivered-To: emilioseijo@icloud.com
+Received: by 10.202.199.65 with SMTP id x62csp158035oif;
+        Fri, 15 Apr 2016 11:55:53 -0700 (PDT)
+X-Received: by 10.112.85.137 with SMTP id h9mr9569517lbz.45.1460746553419;
+        Fri, 15 Apr 2016 11:55:53 -0700 (PDT)
+Return-Path: <group_all_students+bncBCQ577OG5UKBBNXSYS4AKGQEAWARLMQ@lawrenceville.org>
+Received: from mail-lf0-x247.google.com (mail-lf0-x247.google.com. [2a00:1450:4010:c07::247])
+        by mx.google.com with ESMTPS id c2si25560105lbm.154.2016.04.15.11.55.53
+        for <jfernandez16@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 11:55:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of group_all_students+bncBCQ577OG5UKBBNXSYS4AKGQEAWARLMQ@lawrenceville.org designates 2a00:1450:4010:c07::247 as permitted sender) client-ip=2a00:1450:4010:c07::247;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@lawrenceville-org.20150623.gappssmtp.com;
+       spf=pass (google.com: domain of group_all_students+bncBCQ577OG5UKBBNXSYS4AKGQEAWARLMQ@lawrenceville.org designates 2a00:1450:4010:c07::247 as permitted sender) smtp.mailfrom=group_all_students+bncBCQ577OG5UKBBNXSYS4AKGQEAWARLMQ@lawrenceville.org
+Received: by mail-lf0-x247.google.com with SMTP id d19sf74555714lfb.0
+        for <jfernandez16@lawrenceville.org>; Fri, 15 Apr 2016 11:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lawrenceville-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:date:message-id:subject:from:to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=igoSNhf4O55FYFmGaEZVWsygXxNShERaTyFBaNJJP20=;
+        b=JrBZX6iZaU6JTFvZViQ/ssf8NygndTeHxcnpTgZW75BTA0jldyBNy/LOg9NDLeg9LH
+         A0MVY8/OeZPJO643mxVTiEaMIHr9Lnz9R7X2Ud3Qb3QMU0egT5D75A/NWGcG5AKGm78R
+         cZPJkXmvW3OdTae1Uc1ky5HY5DKsTT7DJxCb2eyK/Oso5qXiOoqwlQdyVkEEVN1VyRph
+         olIpJ2fsdHFgk9kWFapG9N52Nae0QLKxz0USL/88marsH/2DjSj+CC93TBmXT0vhB0wc
+         qGANl2Y7nHEuacOwi/FSFqTJ0jBqx+rYpSuOtFEuIK7LaCon4RJ1QNBMsb2Nik2xv//Z
+         6olg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-unsubscribe;
+        bh=igoSNhf4O55FYFmGaEZVWsygXxNShERaTyFBaNJJP20=;
+        b=cA9OF+Hp7I9u1OLdzPxPC25cbTUijI5VF22ZROJAJ7U3EFM8RrlBk8OVz+VCWenYhi
+         X1euGVQTp9mJfVpuLcvo8qUkwVwVb1wPCVvOy5ha6HQP6mgk064khmyL/gIqKmfveDm6
+         2MgAkz3l1Ex8NxtPsqqaIrk8TBTuujquI4e3XbPeHpUZ0Ky5iBrEuq3w9/r344qAGruC
+         2XaVWtpcuDgVbpUxgaI97WNTzKr9m8F9MA84ZrxeAIrHRandjxALGByaglvQOByRkMWJ
+         FI8YTLylq5cNehGHE9/2IPYvn0cyaI38yL/X8fVfRY3tZUNshG8vrj8ZgRzPbo9b/FeJ
+         2FXw==
+X-Gm-Message-State: AOPr4FUG9QrGdfQAHk67FoBkLRtg+38jgqKCh9zRkifv6dbe2wEyy0i+m0uHZ9fiPnFziVaRmaU=
+X-Received: by 10.194.121.197 with SMTP id lm5mr2602684wjb.2.1460746552487;
+        Fri, 15 Apr 2016 11:55:52 -0700 (PDT)
+X-BeenThere: group_all_students@lawrenceville.org
+Received: by 10.28.234.23 with SMTP id i23ls185797wmh.12.gmail; Fri, 15 Apr
+ 2016 11:55:50 -0700 (PDT)
+X-Received: by 10.28.148.8 with SMTP id w8mr5986031wmd.29.1460746550356;
+        Fri, 15 Apr 2016 11:55:50 -0700 (PDT)
+Received: from mail-wm0-x232.google.com (mail-wm0-x232.google.com. [2a00:1450:400c:c09::232])
+        by mx.google.com with ESMTPS id qr6si7679098wjc.243.2016.04.15.11.55.50
+        for <Group_All_Students@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 11:55:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of llevy@lawrenceville.org designates 2a00:1450:400c:c09::232 as permitted sender) client-ip=2a00:1450:400c:c09::232;
+Received: by mail-wm0-x232.google.com with SMTP id a140so43467241wma.0
+        for <Group_All_Students@lawrenceville.org>; Fri, 15 Apr 2016 11:55:50 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.194.184.139 with SMTP id eu11mr26108318wjc.154.1460746550221;
+ Fri, 15 Apr 2016 11:55:50 -0700 (PDT)
+Received: by 10.28.27.85 with HTTP; Fri, 15 Apr 2016 11:55:50 -0700 (PDT)
+Date: Fri, 15 Apr 2016 14:55:50 -0400
+Message-ID: <CANAyrveP-Am-iQAz_RQDnf2b+cNohLJi-0UAXXz3hC_NXcHeCg@mail.gmail.com>
+Subject: {All Stu} Kabbalat Shabbat tonite 6:15
+From: Lauren Levy <llevy@lawrenceville.org>
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary=047d7b6d9c003bbb8505308a8f55
+Bcc: Group_All_Students@lawrenceville.org
+X-Original-Sender: llevy@lawrenceville.org
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@lawrenceville-org.20150623.gappssmtp.com;       spf=pass
+ (google.com: domain of llevy@lawrenceville.org designates 2a00:1450:400c:c09::232
+ as permitted sender) smtp.mailfrom=llevy@lawrenceville.org
+Reply-To: llevy@lawrenceville.org
+Precedence: list
+Mailing-list: list Group_All_Students@lawrenceville.org; contact Group_All_Students+owners@lawrenceville.org
+List-ID: <Group_All_Students.lawrenceville.org>
+X-Spam-Checked-In-Group: Group_All_Students@lawrenceville.org
+X-Google-Group-Id: 174518550472
+List-Post: <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/post>,
+ <mailto:Group_All_Students@lawrenceville.org>
+List-Help: <https://support.google.com/a/lawrenceville.org/bin/topic.py?topic=25838>,
+ <mailto:Group_All_Students+help@lawrenceville.org>
+List-Archive: <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/>
+List-Unsubscribe: <mailto:googlegroups-manage+174518550472+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/subscribe>
+
+--047d7b6d9c003bbb8505308a8f55
+Content-Type: text/plain; charset=UTF-8
+
+Join us as we welcome the Sabbath with singing
+
+Woods/Mem Lounge
+
+Challah, grape juice and.. butter!
+
+All are welcome
+
+--
+***Please do not reply to all***
+
+--047d7b6d9c003bbb8505308a8f55
+Content-Type: text/html; charset=UTF-8
+
+<div dir="ltr"><div><div><div>Join us as we welcome the Sabbath with singing<br><br></div>Woods/Mem Lounge<br><br></div>Challah, grape juice and.. butter!<br><br></div>All are welcome<br></div>
+
+<p></p>
+
+-- <br />
+***Please do not reply to all***<br />
+
+--047d7b6d9c003bbb8505308a8f55--
+
+From 1531717424014873723@xxx Fri Apr 15 22:32:47 +0000 2016
+X-GM-THRID: 1531717424014873723
+X-Gmail-Labels: Inbox,Important
+Delivered-To: jfernandez16@lawrenceville.org
+Received: by 10.202.199.65 with SMTP id x62csp242659oif;
+        Fri, 15 Apr 2016 15:32:47 -0700 (PDT)
+X-Received: by 10.157.11.210 with SMTP id 76mr6899350oth.103.1460759567311;
+        Fri, 15 Apr 2016 15:32:47 -0700 (PDT)
+Return-Path: <group_all_students+bncBDXJNJ752IEBBDGYYW4AKGQENCYXV2Q@lawrenceville.org>
+Received: from mail-ob0-x246.google.com (mail-ob0-x246.google.com. [2607:f8b0:4003:c01::246])
+        by mx.google.com with ESMTPS id m7si15296894oey.68.2016.04.15.15.32.47
+        for <jfernandez16@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 15:32:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of group_all_students+bncBDXJNJ752IEBBDGYYW4AKGQENCYXV2Q@lawrenceville.org designates 2607:f8b0:4003:c01::246 as permitted sender) client-ip=2607:f8b0:4003:c01::246;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@lawrenceville-org.20150623.gappssmtp.com;
+       spf=pass (google.com: domain of group_all_students+bncBDXJNJ752IEBBDGYYW4AKGQENCYXV2Q@lawrenceville.org designates 2607:f8b0:4003:c01::246 as permitted sender) smtp.mailfrom=group_all_students+bncBDXJNJ752IEBBDGYYW4AKGQENCYXV2Q@lawrenceville.org
+Received: by mail-ob0-x246.google.com with SMTP id jl1sf52023217obb.2
+        for <jfernandez16@lawrenceville.org>; Fri, 15 Apr 2016 15:32:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lawrenceville-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-unsubscribe;
+        bh=+B05V/fGmWijYBzmleVLh/GQvuln+ffK/IpaTwvjovQ=;
+        b=bRguT2BGboidD0dA62s6BSbi/Y9VnN5woJxNYKLNji1sXVyAhLLGZUjE/IO/A2jXSr
+         zZf2iwtIltGYwCjTQAhi+0ZII16/+INamyX9yxMGYbPQf6zOAzM463Rt1wZAZZXYkvuB
+         jJVmiL3wh0jmrS9ZWlRGCdm6vYhr0GT1V0F5D2g38CJo/aZYG45XoysuXtOCEm0Wb5uA
+         MN2aSbNCbT/cUN+ij0Nm0dZ4OBH04ZnOVZo36ijmiG5leuQFNLwtZxOinQUyr/ZalLR4
+         jNEKWdUbZwZEnatumZZAja2c7anHxGZYohSEvc/BWsNCJxuEM/AkFhXwA79cUQeAtrr9
+         Luwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:date
+         :message-id:subject:from:to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=+B05V/fGmWijYBzmleVLh/GQvuln+ffK/IpaTwvjovQ=;
+        b=OOHEPYP1n1AgksedYDuES+C+22d+qjOocUOWaawuhkD3fsGALk6Jfhb3G804bgWSOO
+         NiKp1GErt4dmBkWk9URWHhe1zrfPTQDJOM99TIRUZdWJqrBTrLYGiJ+B8KaObXe11fOQ
+         qMfum1HP7lzbcwoltf2Bt/LXOWhweWQSn+xt9DR8D5Z6vddVca/JbvfkkHgGYRJj9Ppc
+         NZ6LuBYhcf4xOJd+wWApBTO851wY7t2kKEcTKXMjahSA6nWTCVdNH/vjA3aIDFpx6J6N
+         pMpK8POExAgEGtKHUSANcohehbxsm7/50Prco0jCLuzODNLvwjgVRPSDaVT1QAuxHWE5
+         +X1w==
+X-Gm-Message-State: AOPr4FXniStUd9M/tYGt+KAf1rs1Ztph7cYj1DoiHKz4V2CDXrUvE8hpR00uSGoL5U5JNAWBNFc=
+X-Received: by 10.50.20.41 with SMTP id k9mr4490579ige.8.1460759566331;
+        Fri, 15 Apr 2016 15:32:46 -0700 (PDT)
+X-BeenThere: group_all_students@lawrenceville.org
+Received: by 10.140.85.39 with SMTP id m36ls1358065qgd.24.gmail; Fri, 15 Apr
+ 2016 15:32:44 -0700 (PDT)
+X-Received: by 10.37.113.2 with SMTP id m2mr11639556ybc.114.1460759564455;
+        Fri, 15 Apr 2016 15:32:44 -0700 (PDT)
+Received: from mail-yw0-x231.google.com (mail-yw0-x231.google.com. [2607:f8b0:4002:c05::231])
+        by mx.google.com with ESMTPS id c190si10998957ybh.206.2016.04.15.15.32.44
+        for <Group_All_Students@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 15:32:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jstevenson16@lawrenceville.org designates 2607:f8b0:4002:c05::231 as permitted sender) client-ip=2607:f8b0:4002:c05::231;
+Received: by mail-yw0-x231.google.com with SMTP id i84so151102582ywc.2
+        for <Group_All_Students@lawrenceville.org>; Fri, 15 Apr 2016 15:32:44 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.129.70.195 with SMTP id t186mr14087192ywa.1.1460759564090;
+ Fri, 15 Apr 2016 15:32:44 -0700 (PDT)
+Received: by 10.37.204.76 with HTTP; Fri, 15 Apr 2016 15:32:44 -0700 (PDT)
+In-Reply-To: <CAO5SCbP0sY9eEieQUoaWis3UbUYu94Xqc_pt4RvsJKstO76qgw@mail.gmail.com>
+References: <CAO5SCbP0sY9eEieQUoaWis3UbUYu94Xqc_pt4RvsJKstO76qgw@mail.gmail.com>
+Date: Fri, 15 Apr 2016 18:32:44 -0400
+Message-ID: <CAPnqr0=Gd_0peVwRb10KweTWt+wMPa8ducKFBmLu62n4jxd0Cw@mail.gmail.com>
+Subject: {All Stu} Fwd: RESHWAP
+From: James Stevenson <jstevenson16@lawrenceville.org>
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary=001a114c7f14ebb5d405308d9687
+Bcc: Group_All_Students@lawrenceville.org
+X-Original-Sender: jstevenson16@lawrenceville.org
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@lawrenceville-org.20150623.gappssmtp.com;       spf=pass
+ (google.com: domain of jstevenson16@lawrenceville.org designates
+ 2607:f8b0:4002:c05::231 as permitted sender) smtp.mailfrom=jstevenson16@lawrenceville.org
+Reply-To: jstevenson16@lawrenceville.org
+Precedence: list
+Mailing-list: list Group_All_Students@lawrenceville.org; contact Group_All_Students+owners@lawrenceville.org
+List-ID: <Group_All_Students.lawrenceville.org>
+X-Spam-Checked-In-Group: Group_All_Students@lawrenceville.org
+X-Google-Group-Id: 174518550472
+List-Post: <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/post>,
+ <mailto:Group_All_Students@lawrenceville.org>
+List-Help: <https://support.google.com/a/lawrenceville.org/bin/topic.py?topic=25838>,
+ <mailto:Group_All_Students+help@lawrenceville.org>
+List-Archive: <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/>
+List-Unsubscribe: <mailto:googlegroups-manage+174518550472+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/subscribe>
+
+--001a114c7f14ebb5d405308d9687
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+*Message from Max Drojjin:*
+
+RESHWAP.COM
+
+Warning:
+
+It looks best on Chrome (firefox is fine too). If you are using Safari,
+make sure it is the latest version. Otherwise it might look very Very ugly.
+If you are using Edge or IE, why are you using them?
+
+Just in case you missed out on the sign up process|
+
+Click on the "Sign Me Up" line and enter your email and password (I'd be
+lying if I said there is
+
+no way I can get your password, but the database I am using makes it really
+hard <https://parse.com/questions/are-user-passwords-encrypted-or-hashed>
+for me to, unless you save it on my computer :=E2=82=BD). Then check your e=
+mail for
+a verification letter.
+
+*play with it* (by uploading sensible forms and editing them) and tell me
+at reshwap@lawrenceville.org if you have any problems| questions| concerns.
+
+=D0=94=D0=B0, =D0=B4=D0=B0, =D0=B4=D0=BE=D1=81=D1=82=D0=B0=D1=82=D0=BE=D1=
+=87=D0=BD=D0=BE =D0=B1=D0=B5=D0=B7=D0=BE=D0=BF=D0=B0=D1=81=D0=BD=D0=BE,
+
+Max
+
+--=20
+***Please do not reply to all***
+
+--001a114c7f14ebb5d405308d9687
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><font size=3D"4"><b>Message fro=
+m Max Drojjin:</b></font><br><div dir=3D"ltr"><p><span><a href=3D"http://RE=
+SHWAP.COM" target=3D"_blank">RESHWAP.COM</a></span></p>
+<p><span><span style=3D"background-color:rgb(255,0,0)">Warning</span>:</spa=
+n></p><p>It looks best on Chrome (firefox is fine too). If you are using Sa=
+fari, make sure it is the latest version. Otherwise it might look very Very=
+ ugly. If you are using Edge or IE, <font size=3D"1">why are you using them=
+?</font></p><p><span></span></p>
+<p><span>Just in case you missed out on the sign up process|=C2=A0</span></=
+p>
+<p>Click on the &quot;Sign Me Up&quot; line and enter your email and passwo=
+rd (I&#39;d be lying if I said there is<br><span></span></p>
+<p><span>no way I can get your password, but the database I am using makes =
+it <a href=3D"https://parse.com/questions/are-user-passwords-encrypted-or-h=
+ashed" target=3D"_blank">really hard</a> for me to, unless you save it on m=
+y computer :=E2=82=BD). Then check your email for a verification letter.</s=
+pan></p><p><i><font size=3D"4">play with it</font></i> (by uploading <font =
+face=3D"arial narrow, sans-serif" size=3D"1">sensible</font> forms and edit=
+ing them) and tell me at <a href=3D"mailto:reshwap@lawrenceville.org" targe=
+t=3D"_blank">reshwap@lawrenceville.org</a> if you have any problems| questi=
+ons| concerns.</p>
+<p><span>=D0=94=D0=B0, =D0=B4=D0=B0, =D0=B4=D0=BE=D1=81=D1=82=D0=B0=D1=82=
+=D0=BE=D1=87=D0=BD=D0=BE =D0=B1=D0=B5=D0=B7=D0=BE=D0=BF=D0=B0=D1=81=D0=BD=
+=D0=BE,</span></p>
+<p><span>Max</span></p></div>
+</div><br></div>
+
+<p></p>
+
+-- <br />
+***Please do not reply to all***<br />
+
+--001a114c7f14ebb5d405308d9687--
+
+From 1531723044246964677@xxx Sat Apr 16 00:02:07 +0000 2016
+X-GM-THRID: 1531723044246964677
+X-Gmail-Labels: Inbox,Important
+Delivered-To: jfernandez16@lawrenceville.org
+Received: by 10.202.199.65 with SMTP id x62csp268589oif;
+        Fri, 15 Apr 2016 17:02:07 -0700 (PDT)
+X-Received: by 10.55.198.149 with SMTP id s21mr29674073qkl.61.1460764927092;
+        Fri, 15 Apr 2016 17:02:07 -0700 (PDT)
+Return-Path: <bnc-792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com>
+Received: from m10b.cvent-planner.com (m10b.cvent-planner.com. [198.207.147.234])
+        by mx.google.com with ESMTPS id g8si14037664qgf.54.2016.04.15.17.02.06
+        for <jfernandez16@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 17:02:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bnc-792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com designates 198.207.147.234 as permitted sender) client-ip=198.207.147.234;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cvent-planner.com;
+       spf=pass (google.com: domain of bnc-792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com designates 198.207.147.234 as permitted sender) smtp.mailfrom=bnc-792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=p1211; d=cvent-planner.com;
+ h=From:List-Unsubscribe:Reply-To:To:Message-ID:Date:Subject:MIME-Version:Content-Type;
+ bh=lqQDn/2tI94OYBr1exZU2SF2vXU=;
+ b=KKc6B9TATzbdmSvBdRhUguNj3L6BBsOzwepTXrUy6QlGP0QAi6r9Yb4ifFsawV7QlnbMnPBqtQub
+   Vujaq7aeiVTur1TNxrlnSzBdPEXJNiL+555PV1mELSbyuyAinn0CzvtalgOf1mofD1QuBBNnn+/n
+   Rju2ZFJLnelYZnu4Hyo=
+Return-Path: bnc-792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com
+X-VMTA: 12329141cv
+From: "University of Southern California" <admitusc@usc.edu>
+X-Job: n94w;;5b969f54-ddb9-4744-a0bd-a9d25f7c784e
+X-ASID: n94w-cvp2
+X-CMID: 792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w
+List-Unsubscribe: <mailto:unsubscribe-792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com?subject=unsubscribe>
+Reply-To: admitusc@usc.edu
+To: "Jose Carlos Fernandez" <jfernandez16@lawrenceville.org>
+Message-ID: <792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd-n94w@cvent-planner.com>
+Date: Fri, 15 Apr 2016 20:02:06 -0400
+Subject: REMINDER: Join Us for On-Campus Admitted Student Day 2016
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----0A74CFD23FF4498BAFFF282A40E3D0EF"
+
+------0A74CFD23FF4498BAFFF282A40E3D0EF
+Content-type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Jose Carlos,
+
+Don=E2=80=99t miss out on your chance to join us for this special progr=
+am for admitted students=2E=20
+
+This day-long event will give you the chance to meet faculty and staff =
+from various academic departments, tour the campus and the local neighb=
+orhood, tour several of USC=E2=80=99s residence halls, and get answers =
+to all your USC-related questions=2E=20
+
+Most important, you will have the chance to find out if USC is right fo=
+r you=2E
+
+On-Campus Admitted Student Daywill be held: Sunday, April 24, 2016 from=
+ 8:00 AM - 4:00 PM=20
+
+University Park Campus=20
+
+Reservations are required=2E To reserve your space or to learn more, pl=
+ease visit you=2Eusc=2Eedu (https://you=2Eusc=2Eedu)=2E
+
+We look forward to meeting you and your family=2E
+
+Office of Admission=20
+University of Southern California
+    =20
+(https://plus=2Egoogle=2Ecom/101607508579070690655/)  (https://www=2Eyo=
+utube=2Ecom/user/USCAdmissionOffice)  (http://instagram=2Ecom/uscadmiss=
+ion)  (https://www=2Efacebook=2Ecom/AdmitUSC)  (https://twitter=2Ecom/u=
+scadmission)  (http://www=2Epinterest=2Ecom/admitusc/)  (http://admissi=
+onblog=2Eusc=2Eedu/) =20
+
+
+If you no longer wish to receive e-mails from us, click http://www=2Ecv=
+ent=2Ecom/d/Xk4veT-B206ratK4_Iv63Q/n94w/E1/8D
+Powered by Cvent
+------0A74CFD23FF4498BAFFF282A40E3D0EF
+Content-type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<table width=3D"540" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" x=
+mlns:msxsl=3D"urn:schemas-microsoft-com:xslt" style=3D"border: 1px soli=
+d #000000; text-align: center; background-image: url('https://custom=2E=
+cvent=2Ecom/Invitations/blankinvite/'); background-color: #ffffff; back=
+ground-repeat: repeat;">
+    <tbody>
+        <tr>
+            <td>
+            <div class=3D"cv-control-body">
+            <p style=3D"text-align: left;"><span class=3D"cv-value"><im=
+g src=3D"http://www=2Eusc=2Eedu/dept/admissions/EmailCampaign/common/US=
+C_header83=2Ejpg"/></span></p>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td style=3D"padding: 0pt 10px; font-size: 12px;">
+            <table width=3D"98%" border=3D"0" style=3D"border-collapse:=
+ collapse;">
+                <tbody>
+                    <tr>
+                        <td valign=3D"top" align=3D"left" style=3D"font=
+-size: 12px;">
+                        <p><span style=3D"font-size: 12px; font-family:=
+ Arial, sans-serif;"><strong><br />
+                        Dear Jose Carlos,</strong><br />
+                        <br />
+                        Don=E2=80=99t miss out on your chance to join u=
+s for this special program for admitted students=2E <br />
+                        <br />
+                        This day-long event will give you the chance to=
+ meet faculty and staff from various academic departments, tour the cam=
+pus and the local neighborhood, tour several of USC=E2=80=99s residence=
+ halls, and get answers to all your USC-related questions=2E <br />
+                        <br />
+                        Most important, you will have the chance to fin=
+d out if USC is right for you=2E
+                        <br />
+                        <br />
+                        <strong>On-Campus Admitted Student Day</strong>=
+ will be held: Sunday, April 24, 2016 from 8:00 AM - 4:00 PM <br />
+                        <br />
+                        University Park Campus <br />
+                        <br />
+                        Reservations are required=2E To reserve your sp=
+ace or to learn more, please visit <a href=3D"http://www=2Ecvent=2Ecom/=
+events/mproc=2Easpx?m=3D792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttps%=
+3a%2f%2fyou=2Eusc=2Eedu&l=3Dyou=2Eusc=2Eedu">you=2Eusc=2Eedu</a>=2E
+                        <br />
+                        <br />
+                        We look forward to meeting you and your family=2E
+                        <br />
+                        <br />
+                        Office of Admission <br />
+                        University of Southern California
+                        </span></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <img width=3D"194" height=3D"50" src=3D"http://www=2Eusc=2E=
+edu/dept/admissions/EmailCampaign/common/social/usc_ConnectWIthUs=2Epng=
+" alt=3D"Connect With Us:" />=C2=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttps%3a%2f%2fplus=2Egoogle=2E=
+com%2f101607508579070690655%2f&l=3D%3cimg+width%3d%2236%22+height%3d%22=
+50%22+src%3d%22http%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmail=
+Campaign%2fcommon%2fsocial%2fusc_googleplus=2Epng%22+alt%3d%22Google%2b=
+%22+%2f%3e"><img width=3D"36" height=3D"50" src=3D"http://www=2Eusc=2Ee=
+du/dept/admissions/EmailCampaign/common/social/usc_googleplus=2Epng" al=
+t=3D"Google+" /></a>=C2=A0=C2=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttps%3a%2f%2fwww=2Eyoutube=2E=
+com%2fuser%2fUSCAdmissionOffice&l=3D%3cimg+width%3d%2236%22+height%3d%2=
+250%22+src%3d%22http%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmai=
+lCampaign%2fcommon%2fsocial%2fusc_youtube=2Epng%22+alt%3d%22YouTube%22+=
+%2f%3e"><img width=3D"36" height=3D"50" src=3D"http://www=2Eusc=2Eedu/d=
+ept/admissions/EmailCampaign/common/social/usc_youtube=2Epng" alt=3D"Yo=
+uTube" /></a>=C2=A0=C2=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttp%3a%2f%2finstagram=2Ecom%2=
+fuscadmission&l=3D%3cimg+width%3d%2236%22+height%3d%2250%22+src%3d%22ht=
+tp%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmailCampaign%2fcommon=
+%2fsocial%2fusc_instagram=2Epng%22+alt%3d%22Instagram%22+%2f%3e"><img w=
+idth=3D"36" height=3D"50" src=3D"http://www=2Eusc=2Eedu/dept/admissions=
+/EmailCampaign/common/social/usc_instagram=2Epng" alt=3D"Instagram" /><=
+/a>=C2=A0=C2=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttps%3a%2f%2fwww=2Efacebook=2E=
+com%2fAdmitUSC&l=3D%3cimg+width%3d%2236%22+height%3d%2250%22+src%3d%22h=
+ttp%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmailCampaign%2fcommo=
+n%2fsocial%2fusc_fb=2Epng%22+alt%3d%22Facebook%22+%2f%3e"><img width=3D=
+"36" height=3D"50" src=3D"http://www=2Eusc=2Eedu/dept/admissions/EmailC=
+ampaign/common/social/usc_fb=2Epng" alt=3D"Facebook" /></a>=C2=A0=C2=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttps%3a%2f%2ftwitter=2Ecom%2f=
+uscadmission&l=3D%3cimg+width%3d%2236%22+height%3d%2250%22+src%3d%22htt=
+p%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmailCampaign%2fcommon%=
+2fsocial%2fusc_twitter=2Epng%22+alt%3d%22Twitter%22+%2f%3e"><img width=3D=
+"36" height=3D"50" src=3D"http://www=2Eusc=2Eedu/dept/admissions/EmailC=
+ampaign/common/social/usc_twitter=2Epng" alt=3D"Twitter" /></a>=C2=A0=C2=
+=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttp%3a%2f%2fwww=2Epinterest=2E=
+com%2fadmitusc%2f&l=3D%3cimg+width%3d%2236%22+height%3d%2250%22+src%3d%=
+22http%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmailCampaign%2fco=
+mmon%2fsocial%2fusc_pinterest=2Epng%22+alt%3d%22Pinterest%22+%2f%3e"><i=
+mg width=3D"36" height=3D"50" src=3D"http://www=2Eusc=2Eedu/dept/admiss=
+ions/EmailCampaign/common/social/usc_pinterest=2Epng" alt=3D"Pinterest"=
+ /></a>=C2=A0=C2=A0
+            <a href=3D"http://www=2Ecvent=2Ecom/events/mproc=2Easpx?m=3D=
+792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttp%3a%2f%2fadmissionblog=2Eu=
+sc=2Eedu%2f&l=3D%3cimg+width%3d%2236%22+height%3d%2250%22+src%3d%22http=
+%3a%2f%2fwww=2Eusc=2Eedu%2fdept%2fadmissions%2fEmailCampaign%2fcommon%2=
+fsocial%2f%2fusc_rss=2Epng%22+alt%3d%22rss%22+%2f%3e"><img width=3D"36"=
+ height=3D"50" src=3D"http://www=2Eusc=2Eedu/dept/admissions/EmailCampa=
+ign/common/social//usc_rss=2Epng" alt=3D"rss" /></a>=C2=A0=C2=A0
+            <br />
+            <br />
+            <span style=3D"font-size: xx-small; color: #c0c0c0;">
+            <p><span style=3D"font-size: 10px;">If you no longer wish t=
+o receive e-mails from us, click <a href=3D"http://www=2Ecvent=2Ecom/ev=
+ents/mproc=2Easpx?m=3D792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dhttp%3a%=
+2f%2fwww=2Ecvent=2Ecom%2fd%2fXk4veT-B206ratK4_Iv63Q%2fn94w%2fE1%2f8D&l=3D=
+Opt-Out" >Opt-Out</a></span></p>
+            </span>
+            </td>
+        </tr>
+    </tbody>
+</table><br><TABLE BORDER=3D"0" CELLSPACING=3D"0" WIDTH=3D"100%"><TR><T=
+D><hr noshade size=3D"1" width=3D"100%" ><A href=3D"http://www=2Ecvent=2E=
+com/events/mproc=2Easpx?m=3D792f4e5e-813f-4edb-ab6a-d2b8fc8bfadd&u=3Dht=
+tp%3a%2f%2fwww=2Ecvent=2Ecom&l=3D%3cIMG+SRC%3d%22http%3a%2f%2fwww=2Ecve=
+nt=2Ecom%2fg%2fimages%2fpowered_by_cvent=2Egif%22+BORDER%3d%220%22+ALT%=
+3d%22Cvent+-+Web-based+Software+Solutions%22%3e%3c%2fIMG%3e"><IMG SRC=3D=
+"http://www=2Ecvent=2Ecom/g/images/powered_by_cvent=2Egif" BORDER=3D"0"=
+ ALT=3D"Cvent - Web-based Software Solutions"></IMG></A></TD></TR></TAB=
+LE><IMG height=3D1 src=3D"http://www=2Ecvent=2Ecom/Events/images/n94w/7=
+92f4e5e-813f-4edb-ab6a-d2b8fc8bfadd=2Egifx" />
+------0A74CFD23FF4498BAFFF282A40E3D0EF--
+
+
+From 1531726722684794709@xxx Sat Apr 16 01:00:35 +0000 2016
+X-GM-THRID: 1531726722684794709
+X-Gmail-Labels: Inbox
+Delivered-To: jw@millerhealthlaw.com
+Received: by 10.202.199.65 with SMTP id x62csp284524oif;
+        Fri, 15 Apr 2016 18:00:34 -0700 (PDT)
+X-Received: by 10.37.87.135 with SMTP id l129mr13893162ybb.7.1460768434789;
+        Fri, 15 Apr 2016 18:00:34 -0700 (PDT)
+Return-Path: <group_all_students+bncBCHJZY72TMNBBME5Y24AKGQEJ6AXM6I@lawrenceville.org>
+Received: from mail-yw0-x247.google.com (mail-yw0-x247.google.com. [2607:f8b0:4002:c05::247])
+        by mx.google.com with ESMTPS id 204si11114540ywf.146.2016.04.15.18.00.34
+        for <jfernandez16@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 18:00:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of group_all_students+bncBCHJZY72TMNBBME5Y24AKGQEJ6AXM6I@lawrenceville.org designates 2607:f8b0:4002:c05::247 as permitted sender) client-ip=2607:f8b0:4002:c05::247;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@lawrenceville-org.20150623.gappssmtp.com;
+       spf=pass (google.com: domain of group_all_students+bncBCHJZY72TMNBBME5Y24AKGQEJ6AXM6I@lawrenceville.org designates 2607:f8b0:4002:c05::247 as permitted sender) smtp.mailfrom=group_all_students+bncBCHJZY72TMNBBME5Y24AKGQEJ6AXM6I@lawrenceville.org
+Received: by mail-yw0-x247.google.com with SMTP id d68sf244895050ywe.1
+        for <jfernandez16@lawrenceville.org>; Fri, 15 Apr 2016 18:00:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lawrenceville-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to:x-original-sender
+         :x-original-authentication-results:reply-to:precedence:mailing-list
+         :list-id:x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=mfPFl22RnajOX1/S7ajD9sCkiPZKHcwDSTvusWIKhW0=;
+        b=kb6HXrFwFahXlWM9UYmlxlNod6GOOGVrHWwztT//h4AxxUmMyW5dIXSYLMWiYyKGzU
+         gfXwPZW53vu9fhLcYuUjzNPJSP4eQj1fNprfIf8Z9xkksKTy3OyQ5q+z62Nvj+WeuozB
+         6vNGIUmKxdBTUbCIGFwHtuHajXS0ffWJ8gHHM7W3N64k2/p4PjVkSs4V4jEHOtEgqGUk
+         qu7fQVI3jTYrzW1SUQANA6c8MP3G3brJd6Ww6Mflaf2sKaALfTV6sJCY9xfSyw6z0kEt
+         fcuJMUWC+J6sqJwuqfLqyPXG1gqpUMdm6sKFtVGpusjnZgikWSejgIfZGtU+q20gYTj0
+         Lsjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :x-original-sender:x-original-authentication-results:reply-to
+         :precedence:mailing-list:list-id:x-spam-checked-in-group:list-post
+         :list-help:list-archive:list-unsubscribe;
+        bh=mfPFl22RnajOX1/S7ajD9sCkiPZKHcwDSTvusWIKhW0=;
+        b=buVzDjN3Y7z9pXhp4+uvLtJWFJSvGT5JEI4uNj79ICFDGrtMRgnwQyfWUff7T6CCVJ
+         eACjjx7JiG+i5aB8mID/0U1TlzjIk4iFzy+JvcTE9s3gbxnCEpYwhyPHLRfFPMbv5qls
+         5x03wSxz1W3+YGOkNgrImGo04+TAyvF2Y9EcTIJFAx4pgvu7Hz0QSAGjDNNxvoa+QFtA
+         Xn5j/KKWWOVUHOs9ia5/3VqYkWIWckx0JoqSySkkxshzzmdl2JIn9QjW3I2UJ8vFCnIg
+         ag9Je4qTXuRzJo2n7IdTkSAj1PSBowAUXrWoJWB+WB+VfFQvT+a+NlI6zEvgQtqojUC3
+         HBSw==
+X-Gm-Message-State: AOPr4FWix/tdfNaG0IO/KFU/LTZWFAGUrLs13TrlXwM/tK1gN/2LiRIRw3SY1fwbzD95JQxdu68=
+X-Received: by 10.140.97.54 with SMTP id l51mr15245238qge.24.1460768433859;
+        Fri, 15 Apr 2016 18:00:33 -0700 (PDT)
+X-BeenThere: group_all_students@lawrenceville.org
+Received: by 10.140.20.144 with SMTP id 16ls255710qgj.83.gmail; Fri, 15 Apr
+ 2016 18:00:32 -0700 (PDT)
+X-Received: by 10.31.158.68 with SMTP id h65mr12075858vke.117.1460768432179;
+        Fri, 15 Apr 2016 18:00:32 -0700 (PDT)
+Received: from mail-vk0-x236.google.com (mail-vk0-x236.google.com. [2607:f8b0:400c:c05::236])
+        by mx.google.com with ESMTPS id r125si11204667vkb.205.2016.04.15.18.00.32
+        for <Group_All_Students@lawrenceville.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Apr 2016 18:00:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of isaxe@lawrenceville.org designates 2607:f8b0:400c:c05::236 as permitted sender) client-ip=2607:f8b0:400c:c05::236;
+Received: by mail-vk0-x236.google.com with SMTP id t129so166288747vkg.2
+        for <Group_All_Students@lawrenceville.org>; Fri, 15 Apr 2016 18:00:32 -0700 (PDT)
+X-Received: by 10.31.52.78 with SMTP id b75mr11976521vka.77.1460768432007;
+ Fri, 15 Apr 2016 18:00:32 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.176.69.102 with HTTP; Fri, 15 Apr 2016 17:59:52 -0700 (PDT)
+From: Ilana Saxe <emilioseijo@icloud.com>
+Date: Fri, 15 Apr 2016 20:59:52 -0400
+Message-ID: <CAKrusfrHbxenottxK=yZEBhaFBi9+gcAXvtKnh-w8vv4KTqAMQ@mail.gmail.com>
+Subject: {All Stu} Last Chance to Sign Up for the Kirby Music Festival
+To: Group All Students <Group_All_Students@lawrenceville.org>,
+	Group All Faculty and Staff <Group_All_Faculty_and_Staff@lawrenceville.org>
+Content-Type: multipart/alternative; boundary=001a11430c7a7d4a2b05308fa73f
+X-Original-Sender: ISaxe@lawrenceville.org
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@lawrenceville-org.20150623.gappssmtp.com;       spf=pass
+ (google.com: domain of isaxe@lawrenceville.org designates 2607:f8b0:400c:c05::236
+ as permitted sender) smtp.mailfrom=isaxe@lawrenceville.org
+Reply-To: isaxe@lawrenceville.org
+Precedence: list
+Mailing-list: list Group_All_Students@lawrenceville.org; contact Group_All_Students+owners@lawrenceville.org
+List-ID: <Group_All_Students.lawrenceville.org>
+X-Spam-Checked-In-Group: Group_All_Students@lawrenceville.org
+X-Google-Group-Id: 174518550472
+List-Post: <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/post>,
+ <mailto:Group_All_Students@lawrenceville.org>
+List-Help: <https://support.google.com/a/lawrenceville.org/bin/topic.py?topic=25838>,
+ <mailto:Group_All_Students+help@lawrenceville.org>
+List-Archive: <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/>
+List-Unsubscribe: <mailto:googlegroups-manage+174518550472+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/lawrenceville.org/group/Group_All_Students/subscribe>
+
+--001a11430c7a7d4a2b05308fa73f
+Content-Type: text/plain; charset=UTF-8
+
+Have musical talent? What to share it?
+
+Tonight is the last night to sign up for the
+
+Kirby Music Festival
+on
+Saturday April 23rd
+
+outside of the Bath House.
+
+*Here is the form.
+<https://docs.google.com/a/lawrenceville.org/forms/d/1IO95oww9-OU-yZFEIYIM-BtmHU-FbTJSIpX2u4h6tY0/viewform>*
+
+THERE WILL BE
+*GLOWSTICKS!!*
+
+
+--
+ilana s. saxe
+Henry and Janie Woods Chair
+Science Department
+The Lawrenceville School
+Lawrenceville NJ 08648
+
+--
+***Please do not reply to all***
+
+--001a11430c7a7d4a2b05308fa73f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Have musical talent? What to share it?<div><br></div><div>=
+Tonight is the last night to sign up for the</div><div><br></div><div><font=
+ size=3D"6" color=3D"#cc0000">Kirby Music Festival</font></div><div> on=C2=
+=A0</div><div><font size=3D"6" color=3D"#0b5394">Saturday April 23rd</font>=
+=C2=A0</div><div><br></div><div>outside of the Bath House.=C2=A0</div><div>=
+<br></div><div><b><font size=3D"6"><a href=3D"https://docs.google.com/a/law=
+renceville.org/forms/d/1IO95oww9-OU-yZFEIYIM-BtmHU-FbTJSIpX2u4h6tY0/viewfor=
+m">Here is the form.</a></font></b></div><div><font size=3D"6"><b><br></b><=
+/font></div><div><font size=3D"6"><font color=3D"#ff9900">T</font><font col=
+or=3D"#0b5394">H</font><font color=3D"#00ff00">E</font><font color=3D"#ff00=
+00">R</font><font color=3D"#ff00ff">E </font><font color=3D"#00ffff">W</fon=
+t><font color=3D"#cc0000">I</font><font color=3D"#741b47">L</font><font col=
+or=3D"#00ff00">L </font><font color=3D"#351c75">B</font><font color=3D"#00f=
+fff">E</font></font></div><div><font color=3D"#000000" size=3D"6"><span sty=
+le=3D"background-color:rgb(255,255,0)"><b>GLOWSTICKS!!</b></span></font></d=
+iv><div><span style=3D"color:rgb(0,0,0);font-size:large">=C2=A0</span><br><=
+/div><div><div><br></div>-- <br><div class=3D"gmail_signature"><div dir=3D"=
+ltr"><font face=3D"garamond, serif" color=3D"#666666">ilana s. saxe</font><=
+div><font face=3D"garamond, serif" color=3D"#666666">Henry and Janie Woods =
+Chair</font></div><div><font face=3D"garamond, serif" color=3D"#666666">Sci=
+ence Department</font></div><div><div><div><font face=3D"garamond, serif" c=
+olor=3D"#666666">The Lawrenceville School</font></div><div><font face=3D"ga=
+ramond, serif" color=3D"#666666">Lawrenceville NJ 08648</font></div></div><=
+/div></div></div>
+</div></div>
+
+<p></p>
+
+-- <br />
+***Please do not reply to all***<br />
+
+--001a11430c7a7d4a2b05308fa73f--
