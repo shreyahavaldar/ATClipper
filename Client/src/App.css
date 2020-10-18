@@ -1,0 +1,105 @@
+.header {
+  width: 100vw;
+  height: 94px;
+  display: flex;
+  flex-direction: column;
+  background-color: #262626;
+}
+
+.header-bar {
+  background-color: #191919;
+  width: 100vw;
+  height: 25px;
+}
+
+.header-text {
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  padding-left: 10px;
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  margin-top: 10px;
+}
+
+h2 {
+  padding-top: 8px;
+  padding-left: 10px;
+}
+
+.button {
+  background-color: #58b0f0;
+  height: 50px;
+  width: 200px;
+  padding: 10px 5px;
+  margin: 10px auto;
+  border-radius: 50px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.button-link {
+  color: white;
+  text-decoration: none;
+  top: 12px;
+  position: relative;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  margin: 0 auto;
+  text-align: center;
+
+  min-width: 500px;
+  width: 50%;
+
+  padding-top: 20px;
+}
+
+.small-hr {
+  width: 150px;
+  color: black;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.flex-row-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  width: 55%;
+}
+
+.flex-row-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  width: 10%;
+}
+
+.infoIcon {
+  width: 30%;
+}
+.table-preview {
+  border: 1px black solid;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.text-left {
+  text-align: left;
+}

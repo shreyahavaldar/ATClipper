@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e15dead-f995-402e-9ae3-7487e9670127" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Client/netlify.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Connector/PreprocessingFunction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Connector/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="41597f94-039d-4ea9-8b9e-edde00fbbdfc" />
+  <component name="ProjectId" id="1hnMLeDAryDcOIuWypDCdz0X5tp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Connector" />
+      <recent name="$PROJECT_DIR$/Client" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.ATClipperTest">
+    <configuration name="ATClipper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ATClipper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ATClipper.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ATClipperTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ATClipper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ATClipperTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestImport" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ATClipper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TestImport.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.ATClipperTest" />
+        <item itemvalue="Python.ATClipper" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e15dead-f995-402e-9ae3-7487e9670127" name="Default Changelist" comment="" />
+      <created>1600642348904</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600642348904</updated>
+      <workItem from="1600642381604" duration="1798000" />
+      <workItem from="1600660605152" duration="9054000" />
+      <workItem from="1600797129207" duration="4454000" />
+      <workItem from="1601801316995" duration="28000" />
+      <workItem from="1601891410352" duration="621000" />
+      <workItem from="1602199159691" duration="278000" />
+      <workItem from="1602441505942" duration="18977000" />
+      <workItem from="1602515642500" duration="1878000" />
+      <workItem from="1602693769927" duration="2151000" />
+      <workItem from="1603047194168" duration="270000" />
+      <workItem from="1603047489644" duration="551000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1620" y="535" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602467634350">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state x="1620" y="535" key="#com.intellij.fileTypes.FileTypeChooser/65.24.2495.1416@65.24.2495.1416" timestamp="1602467634350" />
+    <state x="1100" y="477" key="FileChooserDialogImpl" timestamp="1603047244699">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state x="1100" y="477" key="FileChooserDialogImpl/65.24.2495.1416@65.24.2495.1416" timestamp="1603047244699" />
+    <state width="1200" height="387" key="GridCell.Tab.0.bottom" timestamp="1602694660887">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1229" height="397" key="GridCell.Tab.0.bottom/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091797" />
+    <state width="1200" height="387" key="GridCell.Tab.0.bottom/65.24.2495.1416@65.24.2495.1416" timestamp="1602694660887" />
+    <state width="1200" height="387" key="GridCell.Tab.0.center" timestamp="1602694660886">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1229" height="397" key="GridCell.Tab.0.center/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091796" />
+    <state width="1200" height="387" key="GridCell.Tab.0.center/65.24.2495.1416@65.24.2495.1416" timestamp="1602694660886" />
+    <state width="1200" height="387" key="GridCell.Tab.0.left" timestamp="1602694660886">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1229" height="397" key="GridCell.Tab.0.left/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091796" />
+    <state width="1200" height="387" key="GridCell.Tab.0.left/65.24.2495.1416@65.24.2495.1416" timestamp="1602694660886" />
+    <state width="1200" height="387" key="GridCell.Tab.0.right" timestamp="1602694660887">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1229" height="397" key="GridCell.Tab.0.right/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091797" />
+    <state width="1200" height="387" key="GridCell.Tab.0.right/65.24.2495.1416@65.24.2495.1416" timestamp="1602694660886" />
+    <state width="1227" height="477" key="GridCell.Tab.1.bottom" timestamp="1602445711193">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1227" height="477" key="GridCell.Tab.1.bottom/65.24.2495.1416@65.24.2495.1416" timestamp="1602445711193" />
+    <state width="1227" height="477" key="GridCell.Tab.1.center" timestamp="1602445711193">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1227" height="477" key="GridCell.Tab.1.center/65.24.2495.1416@65.24.2495.1416" timestamp="1602445711193" />
+    <state width="1227" height="477" key="GridCell.Tab.1.left" timestamp="1602445711192">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1227" height="477" key="GridCell.Tab.1.left/65.24.2495.1416@65.24.2495.1416" timestamp="1602445711192" />
+    <state width="1227" height="477" key="GridCell.Tab.1.right" timestamp="1602445711193">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state width="1227" height="477" key="GridCell.Tab.1.right/65.24.2495.1416@65.24.2495.1416" timestamp="1602445711193" />
+    <state x="1532" y="346" width="770" height="773" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600706107437">
+      <screen x="43" y="27" width="2517" height="1413" />
+    </state>
+    <state x="1532" y="346" width="770" height="773" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/43.27.2517.1413@43.27.2517.1413" timestamp="1600706107437" />
+    <state x="1627" y="340" width="618" height="783" key="find.popup" timestamp="1602447920988">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state x="1627" y="340" width="618" height="783" key="find.popup/65.24.2495.1416@65.24.2495.1416" timestamp="1602447920988" />
+    <state x="1601" y="345" width="672" height="678" key="search.everywhere.popup" timestamp="1602467415613">
+      <screen x="65" y="24" width="2495" height="1416" />
+    </state>
+    <state x="1593" y="347" key="search.everywhere.popup/43.27.2517.1413@43.27.2517.1413" timestamp="1600660728892" />
+    <state x="1601" y="345" width="672" height="678" key="search.everywhere.popup/65.24.2495.1416@65.24.2495.1416" timestamp="1602467415613" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ATClipper$mariadb.coverage" NAME="mariadbtest Coverage Results" MODIFIED="1602199425296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ATClipper$ATClipper.coverage" NAME="ATClipper Coverage Results" MODIFIED="1602467430767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ATClipper$mariadbtest.coverage" NAME="ATClipperTest Coverage Results" MODIFIED="1602468546264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ATClipper$ATClipperTest.coverage" NAME="ATClipperTest Coverage Results" MODIFIED="1602694660865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ATClipper$main.coverage" NAME="main Coverage Results" MODIFIED="1600799655378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
