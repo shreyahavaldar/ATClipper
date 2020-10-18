@@ -83,7 +83,7 @@ def retrieveStateNameInput():
 def readDataFrame(mapping, dataframe):
     barNumberIndexes = []
     if(mapping["barNum"] != -1):
-        for barNum in (dataframe.iloc[:, mapping["barNum"] - 1]):
+        for barNum in (dataframe.iloc[:, mapping["barNum"]]):
             barNumberIndexes.append(stateName + "_" + str(barNum))
     else:
         for i in range(len(dataframe)):
@@ -91,7 +91,7 @@ def readDataFrame(mapping, dataframe):
 
     datesOfAdmission = []
     if(mapping["dateOfAdmission"] != -1):
-        for x in (dataframe.iloc[:, mapping["dateOfAdmission"] - 1]):
+        for x in (dataframe.iloc[:, mapping["dateOfAdmission"]]):
             datesOfAdmission.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -106,7 +106,7 @@ def readDataFrame(mapping, dataframe):
 
     phones1 = []
     if(mapping["phone1"] != -1):
-        for x in (dataframe.iloc[:, mapping["phone1"] - 1]):
+        for x in (dataframe.iloc[:, mapping["phone1"]]):
             phones1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -114,7 +114,7 @@ def readDataFrame(mapping, dataframe):
 
     phones2 = []
     if(mapping["phone2"] != -1):
-        for x in (dataframe.iloc[:, mapping["phone2"] - 1]):
+        for x in (dataframe.iloc[:, mapping["phone2"]]):
             phones2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -122,7 +122,7 @@ def readDataFrame(mapping, dataframe):
 
     emails1 = []
     if(mapping["email1"] != -1):
-        for x in (dataframe.iloc[:, mapping["email1"] - 1]):
+        for x in (dataframe.iloc[:, mapping["email1"]]):
             emails1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -130,7 +130,7 @@ def readDataFrame(mapping, dataframe):
 
     emails2 = []
     if(mapping["email2"] != -1):
-        for x in (dataframe.iloc[:, mapping["email2"] - 1]):
+        for x in (dataframe.iloc[:, mapping["email2"]]):
             emails2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -152,7 +152,7 @@ def readDataFrame(mapping, dataframe):
 
     firms = []
     if(mapping["firm"] != -1):
-        for x in (dataframe.iloc[:, mapping["firm"] - 1]):
+        for x in (dataframe.iloc[:, mapping["firm"]]):
             firms.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -160,7 +160,7 @@ def readDataFrame(mapping, dataframe):
 
     faxes = []
     if(mapping["fax"] != -1):
-        for x in (dataframe.iloc[:, mapping["fax"] - 1]):
+        for x in (dataframe.iloc[:, mapping["fax"]]):
             faxes.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -168,7 +168,7 @@ def readDataFrame(mapping, dataframe):
 
     licenses = []
     if(mapping["license"] != -1):
-        for x in (dataframe.iloc[:, mapping["license"] - 1]):
+        for x in (dataframe.iloc[:, mapping["license"]]):
             licenses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -176,7 +176,7 @@ def readDataFrame(mapping, dataframe):
 
     statuses = []
     if(mapping["status"] != -1):
-        for x in (dataframe.iloc[:, mapping["status"] - 1]):
+        for x in (dataframe.iloc[:, mapping["status"]]):
             statuses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -217,7 +217,7 @@ def readDataFrame(mapping, dataframe):
 
     Attorneys = []
     for i in range(len(dataframe)):
-        temp = Attorney(barNumberIndexes[i], datesOfAdmission[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], json.loads(secondaryInfo[i]))
+        temp = Attorney(barNumberIndexes[i], datesOfAdmission[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], secondaryInfo[i])
         Attorneys.append(temp)
 
     json_string = json.dumps(Attorneys, default=obj_dict)

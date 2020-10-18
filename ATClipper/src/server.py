@@ -3,6 +3,7 @@ from flask_cors import CORS
 from PreprocessingFunction import processMappedFile
 import os
 import json
+from ATClipper import ATClipper
 
 app = Flask(__name__)
 CORS(app)
@@ -28,8 +29,9 @@ def add():
     except:
         return {"failure": 'failure'}
 
-
-
     processMappedFile(mapping, file, jurisdiction)
+    ## WORKS TIL HERE
+    ATClipperObj = ATClipper('credentials.json')
+    ATClipperObj.upload('AttorneyObjects.json')
 
     return {"success": 'success'}

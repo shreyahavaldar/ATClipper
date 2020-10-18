@@ -38,7 +38,7 @@ class ATClipper():
                 each['License'].lstrip().rstrip().replace("'", ""),
                 each['Status'].lstrip().rstrip().replace("'", ""),
                 each['BarNumberIndex'][0:2].lstrip().rstrip().replace("'", ""),
-                each['SecondaryInfo'].lstrip().rstrip().replace("'", ""))]
+                each['SecondaryInfo'])]
         print(insert)
         try:
             self.cursor.executemany(sql,insert)
