@@ -2,6 +2,12 @@ import mariadb
 import json
 from collections import Counter
 import mailbox
+import re
+from pathlib import Path
+from tqdm import tqdm
+from libratom.lib.pff import PffArchive
+
+
 
 class ATClipper():
     def __init__(self, db_credentials):
@@ -15,6 +21,13 @@ class ATClipper():
             database=self.credentials['database']
         )
         self.cursor = self.connector.cursor()
+
+
+    def resetdb(self):
+        self.cursor.callproc("resetdb")
+        self.cursor.callproc("createtable")
+
+
     def upload(self,attorney_obj):
         sql = "Insert into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         data = []
@@ -85,3 +98,45 @@ class ATClipper():
             self.identifiers = set_from.union(set_to)
             self.corpus = box
             #return set_from.union(set_to), box
+
+        def load_pst(self,filename):
+
+            mailbox_path = Path()
+            print(mailbox_path.absolute())
+
+
+            report = {'Files': 0, 'Messages': 0, 'Attachments': 0, 'Size': 0, 'Errors': 0}
+
+            # Start displaying results
+            files = sorted(mailbox_path.glob(filename))
+            identifier_set = Counter()
+            # Iterate over files
+            for pst_file in files:
+                try:
+                    # Iterate over messages
+                    with PffArchive(pst_file) as archive:
+
+                        for message in archive.messages():
+                            try:
+
+                                identifiers = re.findall("<[^<>]*@{1}[^<>]*>",message.transport_headers)
+                                for each in identifiers:
+                                    identifier_set[each[1:-1]] += 1
+                                # Update report
+                                report['Messages'] += 1
+                                report['Attachments'] += message.number_of_attachments
+
+                            except Exception as exc:
+                                # Log error and move on to the next message
+                                report['Errors'] += 1
+
+                except Exception as exc:
+                    # Log error and move on to the next file
+                    report['Errors'] += 1
+
+                # Update report
+                report['Files'] += 1
+                report['Size'] += pst_file.stat().st_size
+
+            self.identifiers = set(identifier_set.keys())
+            return report
