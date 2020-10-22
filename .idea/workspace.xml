@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e15dead-f995-402e-9ae3-7487e9670127" name="Default Changelist" comment="All packages integrated">
-      <change afterPath="$PROJECT_DIR$/ATClipper/src/TestImport.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ATClipper/src/sample2.pst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ATClipper/dev/TestImport.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ATClipper/src/ATClipper.py" beforeDir="false" afterPath="$PROJECT_DIR$/ATClipper/src/ATClipper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ATClipper/src/ATClipperTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/ATClipper/src/ATClipperTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +40,11 @@
     <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="41597f94-039d-4ea9-8b9e-edde00fbbdfc" />
@@ -239,7 +240,7 @@
       <workItem from="1602693769927" duration="2151000" />
       <workItem from="1603047194168" duration="270000" />
       <workItem from="1603047489644" duration="1429000" />
-      <workItem from="1603266723853" duration="11551000" />
+      <workItem from="1603266723853" duration="21830000" />
     </task>
     <task id="LOCAL-00001" summary="All packages integrated">
       <created>1603048085510</created>
@@ -248,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603048085510</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="All packages integrated">
+      <created>1603386183005</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603386183005</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,26 +287,26 @@
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
     <state x="1100" y="477" key="FileChooserDialogImpl/65.24.2495.1416@65.24.2495.1416" timestamp="1603266733686" />
-    <state width="1202" height="302" key="GridCell.Tab.0.bottom" timestamp="1603345517777">
+    <state width="1202" height="495" key="GridCell.Tab.0.bottom" timestamp="1603399511398">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
     <state width="1229" height="397" key="GridCell.Tab.0.bottom/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091797" />
-    <state width="1202" height="302" key="GridCell.Tab.0.bottom/65.24.2495.1416@65.24.2495.1416" timestamp="1603345517777" />
-    <state width="1202" height="302" key="GridCell.Tab.0.center" timestamp="1603345517776">
+    <state width="1202" height="495" key="GridCell.Tab.0.bottom/65.24.2495.1416@65.24.2495.1416" timestamp="1603399511398" />
+    <state width="1202" height="495" key="GridCell.Tab.0.center" timestamp="1603399511398">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
     <state width="1229" height="397" key="GridCell.Tab.0.center/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091796" />
-    <state width="1202" height="302" key="GridCell.Tab.0.center/65.24.2495.1416@65.24.2495.1416" timestamp="1603345517776" />
-    <state width="1202" height="302" key="GridCell.Tab.0.left" timestamp="1603345517776">
+    <state width="1202" height="495" key="GridCell.Tab.0.center/65.24.2495.1416@65.24.2495.1416" timestamp="1603399511398" />
+    <state width="1202" height="495" key="GridCell.Tab.0.left" timestamp="1603399511397">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
     <state width="1229" height="397" key="GridCell.Tab.0.left/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091796" />
-    <state width="1202" height="302" key="GridCell.Tab.0.left/65.24.2495.1416@65.24.2495.1416" timestamp="1603345517776" />
-    <state width="1202" height="302" key="GridCell.Tab.0.right" timestamp="1603345517776">
+    <state width="1202" height="495" key="GridCell.Tab.0.left/65.24.2495.1416@65.24.2495.1416" timestamp="1603399511397" />
+    <state width="1202" height="495" key="GridCell.Tab.0.right" timestamp="1603399511398">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
     <state width="1229" height="397" key="GridCell.Tab.0.right/43.27.2517.1413@43.27.2517.1413" timestamp="1600714091797" />
-    <state width="1202" height="302" key="GridCell.Tab.0.right/65.24.2495.1416@65.24.2495.1416" timestamp="1603345517776" />
+    <state width="1202" height="495" key="GridCell.Tab.0.right/65.24.2495.1416@65.24.2495.1416" timestamp="1603399511398" />
     <state width="1227" height="477" key="GridCell.Tab.1.bottom" timestamp="1602445711193">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
@@ -315,10 +323,10 @@
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
     <state width="1227" height="477" key="GridCell.Tab.1.right/65.24.2495.1416@65.24.2495.1416" timestamp="1602445711193" />
-    <state x="1536" y="469" key="Vcs.Push.Dialog.v2" timestamp="1603048155698">
+    <state x="1536" y="469" key="Vcs.Push.Dialog.v2" timestamp="1603386197245">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
-    <state x="1536" y="469" key="Vcs.Push.Dialog.v2/65.24.2495.1416@65.24.2495.1416" timestamp="1603048155698" />
+    <state x="1536" y="469" key="Vcs.Push.Dialog.v2/65.24.2495.1416@65.24.2495.1416" timestamp="1603386197245" />
     <state x="1541" y="344" width="770" height="773" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603334607618">
       <screen x="65" y="24" width="2495" height="1416" />
     </state>
@@ -341,8 +349,8 @@
     <SUITE FILE_PATH="coverage/ATClipper$stochastic.coverage" NAME="stochastic Coverage Results" MODIFIED="1603266917203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/ATClipper$mariadbtest.coverage" NAME="ATClipperTest Coverage Results" MODIFIED="1602468546264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ATClipper$ATClipperTest.coverage" NAME="ATClipperTest Coverage Results" MODIFIED="1603266852699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ATClipper$ATClipperTest__1_.coverage" NAME="ATClipperTest (1) Coverage Results" MODIFIED="1603345517770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ATClipper/src" />
+    <SUITE FILE_PATH="coverage/ATClipper$ATClipperTest__1_.coverage" NAME="ATClipperTest (1) Coverage Results" MODIFIED="1603399511392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ATClipper/src" />
     <SUITE FILE_PATH="coverage/ATClipper$main.coverage" NAME="main Coverage Results" MODIFIED="1600799655378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ATClipper$ATClipper__1_.coverage" NAME="ATClipper (1) Coverage Results" MODIFIED="1603345510742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ATClipper/src" />
+    <SUITE FILE_PATH="coverage/ATClipper$ATClipper__1_.coverage" NAME="ATClipper (1) Coverage Results" MODIFIED="1603398675423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ATClipper/src" />
   </component>
 </project>
