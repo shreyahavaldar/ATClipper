@@ -165,9 +165,10 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       return;
     }
 
+    //TODO: Change name back to firstName
     let mapping = {
       barNum: _bar_number,
-      firstName: _first_name,
+      name: _first_name,
       lastName: _last_name,
       fullName: _full_name,
       phone1: _phone_number1,
