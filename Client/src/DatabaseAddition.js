@@ -16,7 +16,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   const [tableData, setTableData] = useState();
   const [validInput, setValidInput] = useState(false);
 
-  let primary_default = { value: 2, label: "Select..." };
+  let primary_default = [{ value: -2, label: "Select..." }];
   const [barNumber, setBarNumber] = useState(primary_default);
   const [firstName, setFirstName] = useState(primary_default);
   const [lastName, setLastName] = useState(primary_default);
@@ -82,81 +82,64 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   }
 
   function submit() {
-    let _bar_number = barNumber.value;
-    let _first_name = firstName.value;
-    let _last_name = lastName.value;
-    let _full_name = fullName.value;
-    let _phone_number1 = phoneNumber1.value;
-    let _phone_number2 = phoneNumber2.value;
-    let _email1 = email1.value;
-    let _email2 = email2.value;
-    let _address1 = address1.value;
-    let _address2 = address2.value;
-    let _date_of_admission = dateOfAdmission.value;
-    let _firm = firm.value;
-    let _fax = fax.value;
-    let _license = license.value;
-    let _status = status.value;
-
     let valid = true;
-
-    if (_bar_number === -2) {
+    if (barNumber[0].value === -2) {
       valid = false;
     }
 
-    if (_first_name === -2) {
+    if (firstName[0].value === -2) {
       valid = false;
     }
 
-    if (_last_name === -2) {
+    if (lastName[0].value === -2) {
       valid = false;
     }
 
-    if (_full_name === -2) {
+    if (fullName[0].value === -2) {
       valid = false;
     }
 
-    if (_phone_number1 === -2) {
+    if (phoneNumber1[0].value === -2) {
       valid = false;
     }
 
-    if (_phone_number2 === -2) {
+    if (phoneNumber2[0].value === -2) {
       valid = false;
     }
 
-    if (_email1 === -2) {
+    if (email1[0].value === -2) {
       valid = false;
     }
 
-    if (_email2 === -2) {
+    if (email2[0].value === -2) {
       valid = false;
     }
 
-    if (_address1 === -2) {
+    if (address1[0].value === -2) {
       valid = false;
     }
 
-    if (_address2 === -2) {
+    if (address2[0].value === -2) {
       valid = false;
     }
 
-    if (_date_of_admission === -2) {
+    if (dateOfAdmission[0].value === -2) {
       valid = false;
     }
 
-    if (_firm === -2) {
+    if (firm[0].value === -2) {
       valid = false;
     }
 
-    if (_fax === -2) {
+    if (fax[0].value === -2) {
       valid = false;
     }
 
-    if (_license === -2) {
+    if (license[0].value === -2) {
       valid = false;
     }
 
-    if (_status === -2) {
+    if (status[0].value === -2) {
       valid = false;
     }
 
@@ -165,7 +148,23 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       return;
     }
 
-    //TODO: Change name back to firstName
+    let _bar_number = mapColumnToValue(barNumber);
+    let _first_name = mapColumnToValue(firstName);
+    let _last_name = mapColumnToValue(lastName);
+    let _full_name = mapColumnToValue(fullName);
+    let _phone_number1 = mapColumnToValue(phoneNumber1);
+    let _phone_number2 = mapColumnToValue(phoneNumber2);
+    let _email1 = mapColumnToValue(email1);
+    let _email2 = mapColumnToValue(email2);
+    let _address1 = mapColumnToValue(address1);
+    let _address2 = mapColumnToValue(address2);
+    let _date_of_admission = mapColumnToValue(dateOfAdmission);
+    let _firm = mapColumnToValue(firm);
+    let _fax = mapColumnToValue(fax);
+    let _license = mapColumnToValue(license);
+    let _status = mapColumnToValue(status);
+
+    //TODO: Change name to first name on backend
     let mapping = {
       barNum: _bar_number,
       name: _first_name,
@@ -183,6 +182,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       license: _license,
       status: _status,
     };
+    console.log(mapping);
 
     let formData = new FormData();
     formData.append("data", file);
@@ -199,6 +199,14 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       .then((data) => {
         console.log(data);
       });
+  }
+
+  function mapColumnToValue(obj) {
+    let rv = [];
+    obj.forEach((o) => {
+      rv.push(o.value);
+    });
+    return rv;
   }
 
   return (

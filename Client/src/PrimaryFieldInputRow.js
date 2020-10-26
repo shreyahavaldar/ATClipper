@@ -1,6 +1,6 @@
 import React from "react";
 
-import Dropdown from "react-dropdown";
+import { Multiselect } from "multiselect-react-dropdown";
 import "react-dropdown/style.css";
 
 export default function PrimaryFieldInputRow({
@@ -15,11 +15,13 @@ export default function PrimaryFieldInputRow({
       <label className="form-label" htmlFor={fieldId}>
         {fieldName}:
       </label>
-      <Dropdown
+      <Multiselect
         options={options}
-        onChange={(event) => setColumn(event)}
+        onSelect={(list, item) => setColumn(list)}
+        onRemove={(list, item) => setColumn(list)}
         value={column.label}
         id={fieldId}
+        displayValue="label"
       />
     </div>
   );

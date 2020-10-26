@@ -75,77 +75,77 @@ export default function PrimaryFieldRenderer({
       />
       <PrimaryFieldInputRow
         fieldName={"Primary Phone Number"}
-        fieldId={4}
+        fieldId={5}
         column={phoneNumber1}
         setColumn={setPhoneNumber1}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Secondary Phone Number"}
-        fieldId={4}
+        fieldId={6}
         column={phoneNumber2}
         setColumn={setPhoneNumber2}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Primary Email"}
-        fieldId={5}
+        fieldId={7}
         column={email1}
         setColumn={setEmail1}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Secondary Email"}
-        fieldId={5}
+        fieldId={8}
         column={email2}
         setColumn={setEmail2}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Primary Address"}
-        fieldId={5}
+        fieldId={9}
         column={address1}
         setColumn={setAddress1}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Secondary Address"}
-        fieldId={5}
+        fieldId={10}
         column={address2}
         setColumn={setAddress2}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Date of Admission"}
-        fieldId={5}
+        fieldId={11}
         column={dateOfAdmission}
         setColumn={setDateOfAdmission}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Law Firm"}
-        fieldId={5}
+        fieldId={12}
         column={firm}
         setColumn={setFirm}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Fax Number"}
-        fieldId={5}
+        fieldId={13}
         column={fax}
         setColumn={setFax}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"License Type"}
-        fieldId={5}
+        fieldId={14}
         column={license}
         setColumn={setLicense}
         options={options}
       />
       <PrimaryFieldInputRow
         fieldName={"Bar Status"}
-        fieldId={5}
+        fieldId={15}
         column={status}
         setColumn={setStatus}
         options={options}
