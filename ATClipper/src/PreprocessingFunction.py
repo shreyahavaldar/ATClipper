@@ -24,7 +24,7 @@ def processName(columns, df):
         for x in range(len(dataframe)):
             name_temp = ""
             for c in columns:
-                name_temp += str(dataframe.loc[x][c-1]).strip() + " "
+                name_temp += str(dataframe.loc[x][dataframe.columns[c-1]]).strip() + " "
             names.append(name_temp)
         return names
 
