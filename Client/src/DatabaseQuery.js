@@ -5,6 +5,7 @@ import TimeframeInput from "./TimeframeInput";
 
 export default function DatabaseQuery({ jurisdiction_list }) {
   const [file, setFile] = useState();
+  const [buttonString, setButtonString] = useState("Upload a file");
   const [jurisdiction, setJurisdiction] = useState(jurisdiction_list[0]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -36,7 +37,11 @@ export default function DatabaseQuery({ jurisdiction_list }) {
     <div className="flex-center">
       <h3>Database Query</h3>
       <hr className="small-hr" />
-      <FileInputRow setFile={setFile} />
+      <FileInputRow
+        setFile={setFile}
+        buttonString={buttonString}
+        setButtonString={setButtonString}
+      />
       <JurisdictionInputRow
         jurisdiction={jurisdiction}
         setJurisdiction={setJurisdiction}

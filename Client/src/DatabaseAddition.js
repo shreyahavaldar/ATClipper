@@ -9,6 +9,7 @@ import XLSX from "xlsx";
 
 export default function DatabaseAddition({ jurisdiction_list }) {
   const [jurisdiction, setJurisdiction] = useState(jurisdiction_list[0]);
+  const [buttonString, setButtonString] = useState("Upload a file");
   const [file, setFile] = useState();
   const [date, setDate] = useState(new Date());
 
@@ -32,6 +33,10 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   const [fax, setFax] = useState(primary_default);
   const [license, setLicense] = useState(primary_default);
   const [status, setStatus] = useState(primary_default);
+
+  const [inputting, setInputting] = useState(true);
+  const [processing, setProcessing] = useState(false);
+  const [processed, setProcessed] = useState(false);
 
   function next() {
     if (file === undefined) {
@@ -165,22 +170,39 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     let _status = mapColumnToValue(status);
 
     //TODO: Change name to first name on backend
+    // let mapping = {
+    //   barNum: _bar_number,
+    //   firstName: _first_name,
+    //   lastName: _last_name,
+    //   fullName: _full_name,
+    //   phone1: _phone_number1,
+    //   phone2: _phone_number2,
+    //   email1: _email1,
+    //   email2: _email2,
+    //   address1: _address1,
+    //   address2: _address2,
+    //   dateOfAdmission: _date_of_admission,
+    //   firm: _firm,
+    //   fax: _fax,
+    //   license: _license,
+    //   status: _status,
+    // };
     let mapping = {
-      barNum: _bar_number,
-      name: _first_name,
-      lastName: _last_name,
-      fullName: _full_name,
-      phone1: _phone_number1,
-      phone2: _phone_number2,
-      email1: _email1,
-      email2: _email2,
-      address1: _address1,
-      address2: _address2,
-      dateOfAdmission: _date_of_admission,
-      firm: _firm,
-      fax: _fax,
-      license: _license,
-      status: _status,
+      barNum: _bar_number[0],
+      name: _first_name[0],
+      lastName: _last_name[0],
+      fullName: _full_name[0],
+      phone1: _phone_number1[0],
+      phone2: _phone_number2[0],
+      email1: _email1[0],
+      email2: _email2[0],
+      address1: _address1[0],
+      address2: _address2[0],
+      dateOfAdmission: _date_of_admission[0],
+      firm: _firm[0],
+      fax: _fax[0],
+      license: _license[0],
+      status: _status[0],
     };
     console.log(mapping);
 
@@ -191,12 +213,18 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     formData.append("reportDate", date.toJSON().slice(0, 10));
     formData.append("mapping", JSON.stringify(mapping));
 
+    setInputting(false);
+    setProcessing(true);
+
     fetch("http://localhost:5000/add", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
+        setProcessing(false);
+        setProcessed(true);
+
         console.log(data);
       });
   }
@@ -209,69 +237,98 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     return rv;
   }
 
-  return (
-    <div className="flex-center">
-      <h3>Database Addition</h3>
-      <hr className="small-hr" />
+  if (inputting) {
+    return (
+      <div className="flex-center">
+        <h3>Database Addition</h3>
+        <hr className="small-hr" />
+        <FileInputRow
+          setFile={setFile}
+          buttonString={buttonString}
+          setButtonString={setButtonString}
+        />
+        <JurisdictionInputRow
+          jurisdiction={jurisdiction}
+          setJurisdiction={setJurisdiction}
+          jurisdiction_list={jurisdiction_list}
+        />
+        <DateInputRow date={date} setDate={setDate} />
 
-      <FileInputRow setFile={setFile} />
-      <JurisdictionInputRow
-        jurisdiction={jurisdiction}
-        setJurisdiction={setJurisdiction}
-        jurisdiction_list={jurisdiction_list}
-      />
-      <DateInputRow date={date} setDate={setDate} />
-
-      {!validInput ? (
-        <div className="button" onClick={next}>
-          <div className="button-link">Next</div>
-        </div>
-      ) : (
-        <div>
-          <hr className="small-hr" />
-          {tableData !== undefined ? (
-            <Table data={tableData} />
-          ) : (
-            <div>BAD TABLE DATA</div>
-          )}
-          <PrimaryFieldRenderer
-            barNumber={barNumber}
-            setBarNumber={setBarNumber}
-            firstName={firstName}
-            setFirstName={setFirstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            fullName={fullName}
-            setFullName={setFullName}
-            phoneNumber1={phoneNumber1}
-            setPhoneNumber1={setPhoneNumber1}
-            phoneNumber2={phoneNumber2}
-            setPhoneNumber2={setPhoneNumber2}
-            email1={email1}
-            setEmail1={setEmail1}
-            email2={email2}
-            setEmail2={setEmail2}
-            address1={address1}
-            setAddress1={setAddress1}
-            address2={address2}
-            setAddress2={setAddress2}
-            dateOfAdmission={dateOfAdmission}
-            setDateOfAdmission={setDateOfAdmission}
-            firm={firm}
-            setFirm={setFirm}
-            fax={fax}
-            setFax={setFax}
-            license={license}
-            setLicense={setLicense}
-            status={status}
-            setStatus={setStatus}
-            lastColumn={lastColumn}
-          />
-          <div className="button" onClick={submit}>
-            <div className="button-link">Process</div>
+        {!validInput ? (
+          <div className="button" onClick={next}>
+            <div className="button-link">Next</div>
           </div>
-        </div>
-      )}
-    </div>
-  );
+        ) : (
+          <div>
+            <hr className="small-hr" />
+            {tableData !== undefined ? (
+              <>
+                <h3 className="text-left">File Preview:</h3>
+                <div className="table-container">
+                  <Table data={tableData} />
+                </div>
+              </>
+            ) : (
+              <div>BAD TABLE DATA</div>
+            )}
+
+            <PrimaryFieldRenderer
+              barNumber={barNumber}
+              setBarNumber={setBarNumber}
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              fullName={fullName}
+              setFullName={setFullName}
+              phoneNumber1={phoneNumber1}
+              setPhoneNumber1={setPhoneNumber1}
+              phoneNumber2={phoneNumber2}
+              setPhoneNumber2={setPhoneNumber2}
+              email1={email1}
+              setEmail1={setEmail1}
+              email2={email2}
+              setEmail2={setEmail2}
+              address1={address1}
+              setAddress1={setAddress1}
+              address2={address2}
+              setAddress2={setAddress2}
+              dateOfAdmission={dateOfAdmission}
+              setDateOfAdmission={setDateOfAdmission}
+              firm={firm}
+              setFirm={setFirm}
+              fax={fax}
+              setFax={setFax}
+              license={license}
+              setLicense={setLicense}
+              status={status}
+              setStatus={setStatus}
+              lastColumn={lastColumn}
+            />
+            <div className="button" onClick={submit}>
+              <div className="button-link">Process</div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  } else if (processing) {
+    return (
+      <div className="flex-center">
+        <h3>Database Addition</h3>
+        <hr className="small-hr" />
+        <h4>Processing Data...</h4>
+      </div>
+    );
+  } else if (processed) {
+    return (
+      <div className="flex-center">
+        <h3>Database Addition</h3>
+        <hr className="small-hr" />
+        <h4>Processed</h4>
+      </div>
+    );
+  } else {
+    return <></>;
+  }
 }
