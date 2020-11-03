@@ -5,8 +5,8 @@ import json
 # ------------ Minor Helper Functions --------------
 
 def processAddress(columns, df):
-    if(isinstance(columns, int)):
-        return (dataframe.iloc[:, columns-1])
+    if(len(columns) == 1):
+        return (dataframe.iloc[:, columns[0]-1])
     else:
         addresses = []
         for x in range(len(dataframe)):
@@ -17,8 +17,8 @@ def processAddress(columns, df):
         return addresses
 
 def processName(columns, df):
-    if(isinstance(columns, int)):
-        return (dataframe.iloc[:, columns-1])
+    if(len(columns) == 1):
+        return (dataframe.iloc[:, columns[0]-1])
     else:
         names = []
         for x in range(len(dataframe)):
@@ -82,101 +82,117 @@ def retrieveStateNameInput():
 
 def readDataFrame(mapping, dataframe):
     barNumberIndexes = []
-    if(mapping["barNum"] != -1):
-        for barNum in (dataframe.iloc[:, mapping["barNum"]]):
+    if(mapping["barNum"][0] != -1):
+        for barNum in (dataframe.iloc[:, mapping["barNum"][0]]):
             barNumberIndexes.append(stateName + "_" + str(barNum))
     else:
         for i in range(len(dataframe)):
             barNumberIndexes.append("0")
 
     datesOfAdmission = []
-    if(mapping["dateOfAdmission"] != -1):
-        for x in (dataframe.iloc[:, mapping["dateOfAdmission"]]):
+    if(mapping["dateOfAdmission"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["dateOfAdmission"][0]]):
             datesOfAdmission.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             datesOfAdmission.append("0")
+            
+    firstNames = []
+    if(mapping["firstName"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["firstName"][0]]):
+            firstNames.append(str(x).strip())
+    else:
+        for i in range(len(dataframe)):
+            firstNames.append("0")
+            
+    lastNames = []
+    if(mapping["lastName"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["lastName"][0]]):
+            lastNames.append(str(x).strip())
+    else:
+        for i in range(len(dataframe)):
+            lastNames.append("0")
 
     names = []
-    if(mapping["name"] != -1):
+    if(mapping["name"][0] != -1):
         names = processName(mapping["name"], dataframe)
     else:
         for i in range(len(dataframe)):
             names.append("0")
 
     phones1 = []
-    if(mapping["phone1"] != -1):
-        for x in (dataframe.iloc[:, mapping["phone1"]]):
+    if(mapping["phone1"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["phone1"][0]]):
             phones1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             phones1.append("0")
 
     phones2 = []
-    if(mapping["phone2"] != -1):
-        for x in (dataframe.iloc[:, mapping["phone2"]]):
+    if(mapping["phone2"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["phone2"][0]]):
             phones2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             phones2.append("0")
 
     emails1 = []
-    if(mapping["email1"] != -1):
-        for x in (dataframe.iloc[:, mapping["email1"]]):
+    if(mapping["email1"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["email1"][0]]):
             emails1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             emails1.append("0")
 
     emails2 = []
-    if(mapping["email2"] != -1):
-        for x in (dataframe.iloc[:, mapping["email2"]]):
+    if(mapping["email2"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["email2"][0]]):
             emails2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             emails2.append("0")
 
     addresses1 = []
-    if(mapping["address1"] != -1):
+    if(mapping["address1"][0] != -1):
         addresses1 = processAddress(mapping["address1"], dataframe)
     else:
         for i in range(len(dataframe)):
             addresses1.append("0")
 
     addresses2 = []
-    if(mapping["address2"] != -1):
+    if(mapping["address2"][0] != -1):
         addresses2 = processAddress(mapping["address2"], dataframe)
     else:
         for i in range(len(dataframe)):
             addresses2.append("0")
 
     firms = []
-    if(mapping["firm"] != -1):
-        for x in (dataframe.iloc[:, mapping["firm"]]):
+    if(mapping["firm"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["firm"][0]]):
             firms.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             firms.append("0")
 
     faxes = []
-    if(mapping["fax"] != -1):
-        for x in (dataframe.iloc[:, mapping["fax"]]):
+    if(mapping["fax"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["fax"][0]]):
             faxes.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             faxes.append("0")
 
     licenses = []
-    if(mapping["license"] != -1):
-        for x in (dataframe.iloc[:, mapping["license"]]):
+    if(mapping["license"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["license"][0]]):
             licenses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             licenses.append("0")
 
     statuses = []
-    if(mapping["status"] != -1):
-        for x in (dataframe.iloc[:, mapping["status"]]):
+    if(mapping["status"][0] != -1):
+        for x in (dataframe.iloc[:, mapping["status"][0]]):
             statuses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -196,9 +212,11 @@ def readDataFrame(mapping, dataframe):
 
     # JSON output
     class Attorney:
-        def __init__(self, BarNumberIndex, DateOfAdmission, Name, Phone1, Phone2, Email1, Email2, Address1, Address2, Firm, Fax, License, Status, SecondaryInfo):
+        def __init__(self, BarNumberIndex, DateOfAdmission, FirstName, LastName, Name, Phone1, Phone2, Email1, Email2, Address1, Address2, Firm, Fax, License, Status, SecondaryInfo):
             self.BarNumberIndex = BarNumberIndex
             self.DateOfAdmission = DateOfAdmission
+            self.FirstName = firstName
+            self.LastName = lastName
             self.Name = Name
             self.Phone1 = Phone1
             self.Phone2 = Phone2
@@ -217,7 +235,7 @@ def readDataFrame(mapping, dataframe):
 
     Attorneys = []
     for i in range(len(dataframe)):
-        temp = Attorney(barNumberIndexes[i], datesOfAdmission[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], secondaryInfo[i])
+        temp = Attorney(barNumberIndexes[i], datesOfAdmission[i], firstNames[i], lastNames[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], json.loads(secondaryInfo[i]))
         Attorneys.append(temp)
 
     json_string = json.dumps(Attorneys, default=obj_dict)
