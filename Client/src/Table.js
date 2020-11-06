@@ -3,7 +3,6 @@ import React from "react";
 export default function Table({ data }) {
   return (
     <>
-      <h3 className="text-left">File Preview:</h3>
       <table className="table-preview">
         <thead>
           <tr key="column_id">

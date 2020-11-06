@@ -37,8 +37,22 @@ h2 {
   padding: 10px 5px;
   margin: 10px auto;
   border-radius: 50px;
+  border: none;
   font-size: 20px;
   text-align: center;
+  color: white;
+}
+
+.input-button {
+  background-color: #58b0f0;
+  height: 50px;
+  padding: 10px 35px;
+  margin: 10px 0;
+  border-radius: 50px;
+  border: none;
+  font-size: 20px;
+  text-align: center;
+  color: white;
 }
 
 .button-link {
@@ -56,10 +70,10 @@ h2 {
   margin: 0 auto;
   text-align: center;
 
-  min-width: 500px;
-  width: 50%;
+  width: 80%;
 
   padding-top: 20px;
+  font-size: 24px;
 }
 
 .small-hr {
@@ -69,6 +83,19 @@ h2 {
 
 .flex-row {
   display: flex;
+  width: 70%;
+  min-width: 500px;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.flex-row-pf {
+  display: flex;
+  width: 100%;
+  min-width: 500px;
+  margin: 0 auto;
   flex-direction: row;
   justify-content: space-between;
   padding-bottom: 15px;
@@ -88,18 +115,107 @@ h2 {
   justify-content: space-between;
   padding-bottom: 15px;
   width: 10%;
+  padding-top: 15px;
+  margin: auto 0;
+}
+
+.form-label {
+  margin: auto 0;
+  width: 300px;
+  text-align: left;
 }
 
 .infoIcon {
-  width: 30%;
+  width: 25px;
+  height: 25px;
+  padding-top: 3px;
+  padding-left: 5px;
 }
+
 .table-preview {
   border: 1px black solid;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding: 5px;
 }
 
 .text-left {
   text-align: left;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border: 2px solid black;
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.multiselect {
+  width: calc(100% - 325px);
+}
+
+.column-mapping-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.column-mapping-title > img.infoIcon {
+  position: relative;
+  top: 32px;
+  padding-left: 15px;
+}
+
+.flex-row > input[type="text"] {
+  width: calc(100% - 80px);
+  float: right;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #333;
+  cursor: default;
+  padding: 8px 5px 8px 10px;
+  font-size: 20px;
+}
+
+input[type="text"] {
+  width: calc(100% - 80px);
+  float: right;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #333;
+  cursor: default;
+  padding: 8px 5px 8px 10px;
+  font-size: 20px;
+}
+
+.searchBox {
+  float: left !important;
+  padding: 0px 0px 10px 5px !important;
+  font-size: 18px !important;
+  min-height: 22px;
+}
+
+span.chip {
+  float: left;
 }
