@@ -2,6 +2,7 @@ import pandas as pd
 from tkinter import filedialog
 import json
 
+API_KEY = "AIzaSyDX5Yq0nB81RRdqTVe6SQN2WEy8CM_XmLw"
 # ------------ Minor Helper Functions --------------
 
 def processAddress(columns, df):
@@ -13,7 +14,7 @@ def processAddress(columns, df):
             address_temp = ""
             for c in columns:
                 address_temp += str(dataframe.loc[x][c-1]).strip() + " "
-            addresses.append(address_temp.strip())
+            addresses.append(normalizeAddress(address_temp.strip()))
         return addresses
 
 def processName(columns, df):
@@ -53,6 +54,17 @@ def retrieveStateNameInput():
     global stateName
     stateName = StateName_Input.get("1.0","end-1c")
     root.destroy()
+
+def normalizeAddress(address):
+    API_KEY = "AIzaSyDX5Yq0nB81RRdqTVe6SQN2WEy8CM_XmLw"
+    url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={address}&inputtype=textquery&fields=formatted_address&key={API_KEY}".format(address=address, API_KEY=API_KEY)
+    response = requests.get(url)
+    response_json = json.loads(response.text)
+    if(response_json['status'] == "OK"):
+        formatted_address = str(json.loads(response.text)['candidates'][0])
+        return formatted_address[23:-2]
+    else:
+        return address
 
 # ------------ Creating the Frontend --------------
 
@@ -96,7 +108,7 @@ def readDataFrame(mapping, dataframe):
     else:
         for i in range(len(dataframe)):
             datesOfAdmission.append("0")
-            
+
     firstNames = []
     if(mapping["firstName"][0] != -1):
         for x in (dataframe.iloc[:, mapping["firstName"][0]]):
@@ -104,7 +116,7 @@ def readDataFrame(mapping, dataframe):
     else:
         for i in range(len(dataframe)):
             firstNames.append("0")
-            
+
     lastNames = []
     if(mapping["lastName"][0] != -1):
         for x in (dataframe.iloc[:, mapping["lastName"][0]]):
