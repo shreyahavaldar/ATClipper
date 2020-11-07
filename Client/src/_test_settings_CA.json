@@ -1,0 +1,93 @@
+{
+  "barNumber": [
+    {
+      "label": "Column 0",
+      "value": 0
+    }
+  ],
+  "firstName": [
+    {
+      "label": "Column 4",
+      "value": 4
+    }
+  ],
+  "lastName": [
+    {
+      "label": "Column 3",
+      "value": 3
+    }
+  ],
+  "fullName": [
+    {
+      "label": "Column 2",
+      "value": 2
+    }
+  ],
+  "phoneNumber1": [
+    {
+      "label": "Column 14",
+      "value": 14
+    }
+  ],
+  "phoneNumber2": [
+    {
+      "value": -1,
+      "label": "N/A"
+    }
+  ],
+  "email1": [
+    {
+      "label": "Column 16",
+      "value": 16
+    }
+  ],
+  "email2": [
+    {
+      "value": -1,
+      "label": "N/A"
+    }
+  ],
+  "address1": [
+    {
+      "label": "Column 6",
+      "value": 6
+    }
+  ],
+  "address2": [
+    {
+      "label": "Column 7",
+      "value": 7
+    }
+  ],
+  "dateOfAdmission": [
+    {
+      "label": "Column 1",
+      "value": 1
+    }
+  ],
+  "firm": [
+    {
+      "label": "Column 17",
+      "value": 17
+    }
+  ],
+  "fax": [
+    {
+      "label": "Column 15",
+      "value": 15
+    }
+  ],
+  "license": [
+    {
+      "value": -1,
+      "label": "N/A"
+    }
+  ],
+  "status": [
+    {
+      "label": "Column 5",
+      "value": 5
+    }
+  ],
+  "jurisdiction": "CA"
+}
