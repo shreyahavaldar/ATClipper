@@ -83,3 +83,4 @@ six==1.15.0
 virtualenv==20.0.33
 Werkzeug==1.0.1
 xlrd==1.2.0
+libratom
