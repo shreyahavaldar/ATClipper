@@ -10,11 +10,25 @@ CORS(app)
 
 @app.route('/query', methods=['POST'])
 def query():
-    content = request.json
+    form = request.form
+    files = request.files
 
-    print(content)
-    ## TODO: Add Python script method here
-    return content
+    try:
+        file = files["data"]
+        query = form["query"]
+        jurisdiction = form["jurisdiction"]
+        startDate = form["startDate"]
+        endDate = form["endDate"]
+        exportSettings = json.loads(form["exportSettings"])
+
+    except:
+        return {"response": 'failure'}
+
+    ## TODO: Call query
+
+    ## TODO: Prepare response
+
+    return {"response": "success"}
 
 @app.route('/add', methods=['POST'])
 def add():
@@ -22,16 +36,21 @@ def add():
     files = request.files
 
     try:
+        file = files["data"]
+        settings = json.loads(form["settings"])
         jurisdiction = form["jurisdiction"]
         reportDate = form["reportDate"]
         mapping = json.loads(form["mapping"])
-        file = files["data"]
     except:
-        return {"failure": 'failure'}
+        return {"response": 'failure'}
 
-    processMappedFile(mapping, file, jurisdiction)
-    ## WORKS TIL HERE
-    ATClipperObj = ATClipper('credentials.json')
-    ATClipperObj.upload('AttorneyObjects.json')
+    ## TODO: Call process mapped file
+    # processMappedFile(mapping, file, jurisdiction)
 
-    return {"success": 'success'}
+    ## TODO: Upload to backend
+    # ATClipperObj = ATClipper('credentials.json')
+    # ATClipperObj.upload('AttorneyObjects.json')
+
+    ## TODO: Prepare response
+
+    return {"response": 'success'}

@@ -6,6 +6,8 @@ import TimeframeInput from "./TimeframeInput";
 import ElapsedTimer from "./ElapsedTimer";
 import ExportFieldRenderer from "./ExportFieldRenderer";
 
+import dateFormat from "dateformat";
+
 export default function DatabaseQuery({ jurisdiction_list }) {
   let query_list = [
     {
@@ -46,7 +48,15 @@ export default function DatabaseQuery({ jurisdiction_list }) {
   const [status, setStatus] = useState(true);
   const [secondaryInfo, setSecondaryInfo] = useState(true);
 
+  const [errorButtonClass, setErrorButtonClass] = useState("");
+
   function search() {
+    if (file === undefined) {
+      setErrorButtonClass("button-error");
+      return;
+    }
+    setErrorButtonClass("");
+
     let export_settings = {
       barNumber: barNumber,
       firstName: firstName,
@@ -66,25 +76,20 @@ export default function DatabaseQuery({ jurisdiction_list }) {
       secondaryInfo: secondaryInfo,
     };
 
-    let obj = {
-      data: file,
-      query: query,
-      jurisdiction: jurisdiction,
-      startDate: startDate.toJSON().slice(0, 10),
-      endDate: endDate.toJSON().slice(0, 10),
-      exportSettings: export_settings,
-    };
-    console.log(obj);
+    let formData = new FormData();
+    formData.append("data", file);
+    formData.append("exportSettings", JSON.stringify(export_settings));
+    formData.append("jurisdiction", jurisdiction);
+    formData.append("query", query);
+    formData.append("startDate", dateFormat(startDate, "yyyy-mm-dd"));
+    formData.append("endDate", dateFormat(endDate, "yyyy-mm-dd"));
 
     setInputting(false);
     setProcessing(true);
 
     fetch("http://localhost:5000/query", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj),
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -103,6 +108,7 @@ export default function DatabaseQuery({ jurisdiction_list }) {
           setFile={setFile}
           buttonString={buttonString}
           setButtonString={setButtonString}
+          errorButtonClass={errorButtonClass}
         />
         <JurisdictionInputRow
           jurisdiction={jurisdiction}
