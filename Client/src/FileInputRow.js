@@ -16,7 +16,7 @@ export default function FileInputRow({
   }
 
   return (
-    <div className="flex-row">
+    <div className="flex-row" id="file-input-row">
       <div className="flex-row-left">
         <label className="form-label" htmlFor="file">
           Input
