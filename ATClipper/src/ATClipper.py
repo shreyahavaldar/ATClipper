@@ -4,14 +4,9 @@ from collections import Counter
 import mailbox
 import re
 from pathlib import Path
-
-from tqdm import tqdm
 from libratom.lib.pff import PffArchive
 import threading
-import time
 import queue
-import multiprocessing.pool
-from threading import Thread, Lock
 
 class ATClipper():
     def __init__(self, db_credentials):
@@ -68,15 +63,14 @@ class ATClipper():
         return -1
 
 
-
-
-    def upload(self,attorney_obj):
+    def upload_attorneys(self,attorney_obj):
         sql = "Insert into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         data = []
         insert = []
         with open(attorney_obj) as data:
            attorneys = json.load(data)
         for each in attorneys:
+           # insert += tuple(map(lambda f: f.lstrip().rstrip().replace("'", "")))
             insert += [
                 (each['BarNumberIndex'].lstrip().rstrip().replace("'", ""),
                 each['BarNumberIndex'].lstrip().rstrip().replace("'", "")[3:],
@@ -128,7 +122,7 @@ class ATClipper():
             #return matches
 
     def parallel_upload(self,attorney_obj,Num_Of_threads):
-        sql = "Insert into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        sql = "Replace into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         data = []
         insert = []
         with open(attorney_obj) as data:
@@ -150,7 +144,7 @@ class ATClipper():
                  each['License'].lstrip().rstrip().replace("'", ""),
                  each['Status'].lstrip().rstrip().replace("'", ""),
                  each['BarNumberIndex'][0:2].lstrip().rstrip().replace("'", ""),
-                 "each['SecondaryInfo']")]
+                 str(each['SecondaryInfo']))]
 
         def divide_chunks(l, n):
             # looping till length l
@@ -254,7 +248,7 @@ class ATClipper():
                 report['Size'] += pst_file.stat().st_size
 
             self.identifiers = set(identifier_set.keys())
-            self.identifiers.add("clairemcconway@gmail.com")
+            self.identifiers.add("daroncase@aol.com")
             return report
 
 
@@ -266,7 +260,6 @@ class ATClipper():
 
     class query_worker(threading.Thread):
         def __init__(self, conn, cur, my_queue,data,query_type = "email"):
-
             threading.Thread.__init__(self)
             self.conn = conn
             self.cur = cur
@@ -275,22 +268,21 @@ class ATClipper():
             self.query_type = query_type
 
         def run(self):
-            if(self.query_type == "email"):
-                sql = "SELECT * from attorney where email1 = ? OR email2 = ?"
-            else:
-                sql = "SELECT * from attorney where phone1 = ? OR phone1 = ?"
 
-            query_ids = []
+            if(self.query_type == "email"):
+                sql = "SELECT * from dev.attorney where dev.attorney.email1 = ? OR dev.attorney.email1 = ?"
+            else:
+                sql = "SELECT * from dev.attorney where phone1 = ? OR phone1 = ?"
+            query_ids  = []
             matches = []
             # print(len(self.data))
-
             for each in self.data:
                 self.cur.execute(sql, tuple([each, each]))
                 for all in self.cur:
-                    matches += [all]
+                    self.q.put(all)
             # print(matches)
             # self.join()
-            self.q += (matches)
+            #self.q += (matches)
 
 
             self.conn.close()
@@ -299,21 +291,18 @@ class ATClipper():
 
 
 
-
     def parallel_query(self,Import_Obj,num_threads):
-        sql = "SELECT * from attorney where email1 = ? and email2 = ?"
         num_threads = min(len(Import_Obj.identifiers),num_threads)
-
         def divide_chunks(l, n):
             # looping till length l
             for i in range(0, len(l), n):
+                #print(l[i:i + n])
                 yield l[i:i + n]
-        print(len(Import_Obj.identifiers))
+        #print(len(Import_Obj.identifiers))
         data_list = list(divide_chunks(list(Import_Obj.identifiers),max(int(len(Import_Obj.identifiers)/num_threads),1)))
-        my_queue = []
+        my_queue = queue.Queue()
         threads = []
         for i in range(num_threads):
-
             conn = mariadb.connect(
                 user=self.credentials['user'],
                 password=self.credentials['password'],
@@ -324,13 +313,13 @@ class ATClipper():
             thread = self.query_worker(conn, cur,my_queue,data_list[i])
             thread.deamon = True
             threads.append(thread)
-
         for each in threads:
             each.start()
         for each in threads:
             each.join()
+        #print(my_queue.queue)
+        return list(my_queue.queue)
 
 
 
-        return my_queue
-
+        #return print(my_queue.get())
