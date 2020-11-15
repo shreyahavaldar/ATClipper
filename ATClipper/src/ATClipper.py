@@ -4,8 +4,14 @@ from collections import Counter
 import mailbox
 import re
 from pathlib import Path
+
+from tqdm import tqdm
 from libratom.lib.pff import PffArchive
 import threading
+import time
+import queue
+import multiprocessing.pool
+from threading import Thread, Lock
 
 class ATClipper():
     def __init__(self, db_credentials):
@@ -62,7 +68,9 @@ class ATClipper():
         return -1
 
 
-    def upload_attorneys(self,attorney_obj):
+
+
+    def upload(self,attorney_obj):
         sql = "Insert into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         data = []
         insert = []
@@ -258,6 +266,7 @@ class ATClipper():
 
     class query_worker(threading.Thread):
         def __init__(self, conn, cur, my_queue,data,query_type = "email"):
+
             threading.Thread.__init__(self)
             self.conn = conn
             self.cur = cur
@@ -274,6 +283,7 @@ class ATClipper():
             query_ids = []
             matches = []
             # print(len(self.data))
+
             for each in self.data:
                 self.cur.execute(sql, tuple([each, each]))
                 for all in self.cur:
@@ -289,9 +299,11 @@ class ATClipper():
 
 
 
+
     def parallel_query(self,Import_Obj,num_threads):
         sql = "SELECT * from attorney where email1 = ? and email2 = ?"
         num_threads = min(len(Import_Obj.identifiers),num_threads)
+
         def divide_chunks(l, n):
             # looping till length l
             for i in range(0, len(l), n):
@@ -301,6 +313,7 @@ class ATClipper():
         my_queue = []
         threads = []
         for i in range(num_threads):
+
             conn = mariadb.connect(
                 user=self.credentials['user'],
                 password=self.credentials['password'],
@@ -311,13 +324,13 @@ class ATClipper():
             thread = self.query_worker(conn, cur,my_queue,data_list[i])
             thread.deamon = True
             threads.append(thread)
+
         for each in threads:
             each.start()
         for each in threads:
             each.join()
 
+
+
         return my_queue
 
-
-
-        #return print(my_queue.get())

@@ -1,0 +1,18 @@
+{
+  "barNumber": [0],
+  "firstName": [4],
+  "lastName": [3],
+  "fullName": [2],
+  "phoneNumber1": [14],
+  "phoneNumber2": [-1],
+  "email1": [16],
+  "email2": [-1],
+  "address1": [6],
+  "address2": [7],
+  "dateOfAdmission": [1],
+  "firm": [17],
+  "fax": [15],
+  "license": [-1],
+  "status": [5],
+  "jurisdiction": "CA"
+}

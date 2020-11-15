@@ -68,4 +68,43 @@ print("====================")
 
 
 '''
+
+start = time.time()
+matches = ATClipperObj.query(importer)
+print("Single worker query took: " + str(time.time()- start))
+
+print("Single worker query matches" + str(matches))
+start = time.time()
+print("====================")
+
+num_workers = 5
+matches2 = ATClipperObj.parallel_query(importer,num_workers)
+print("Parallel query with " + str(num_workers)+" workers took: " + str(time.time()- start))
+print("Parallel matches" + str(matches2))
+start = time.time()
+print("====================")
+
+num_workers = 10
+matches2 = ATClipperObj.parallel_query(importer,num_workers)
+print("Parallel query with " + str(num_workers)+" workers took: " + str(time.time()- start))
+print("Parallel matches" + str(matches2))
+start = time.time()
+print("====================")
+
+num_workers = 15
+matches2 = ATClipperObj.parallel_query(importer,num_workers)
+print("Parallel query with " + str(num_workers)+" workers took: " + str(time.time()- start))
+print("Parallel matches" + str(matches2))
+start = time.time()
+print("====================")
+
+num_workers = 30
+matches2 = ATClipperObj.parallel_query(importer,num_workers)
+print("Parallel query with " + str(num_workers)+" workers took: " + str(time.time()- start))
+print("Parallel matches " + str(matches2))
+start = time.time()
+print("====================")
+
+
+
 #ATClipperObj.resetdb()

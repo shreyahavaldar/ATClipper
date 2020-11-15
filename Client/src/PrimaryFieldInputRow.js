@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import React from "react";
 
 import { Multiselect } from "multiselect-react-dropdown";
@@ -11,16 +10,21 @@ export default function PrimaryFieldInputRow({
   setColumn,
   options,
 }) {
-  // const [cols, setCols] = useState(0);
-
-  function onSelect(list) {
+  function onSelect(list, item) {
+    if (
+      column === undefined ||
+      column[0] === undefined ||
+      column[0].value === -2
+    ) {
+      list = [item];
+    }
     setColumn(list);
-    // setCols(cols + 1);
   }
 
-  function onRemove(list) {
+  function onRemove(list, item) {
+    console.log(list);
+    console.log(item);
     setColumn(list);
-    // setCols(cols - 1);
   }
 
   return (
@@ -31,9 +35,9 @@ export default function PrimaryFieldInputRow({
       <div className="multiselect">
         <Multiselect
           options={options}
-          onSelect={(list, item) => onSelect(list)}
-          onRemove={(list, item) => onRemove(list)}
-          value={column.label}
+          onSelect={(list, item) => onSelect(list, item)}
+          onRemove={(list, item) => onRemove(list, item)}
+          selectedValues={column}
           id={fieldId}
           displayValue="label"
           className="multiselect"

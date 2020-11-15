@@ -6,8 +6,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "dateformat": "^3.0.3",
     "multiselect-react-dropdown": "^1.6.1",
     "react": "^16.13.1",
+    "react-compound-timer": "^1.2.0",
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",
     "react-dropdown": "^1.9.0",
@@ -36,5 +38,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5"
   }
 }

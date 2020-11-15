@@ -3,12 +3,22 @@ import FileInputRow from "./FileInputRow";
 import DateInputRow from "./DateInputRow";
 import JurisdictionInputRow from "./JurisdictionInputRow";
 import PrimaryFieldRenderer from "./PrimaryFieldRenderer";
+import SettingsDownloadRow from "./SettingsDownloadRow";
+import SettingsUploadInputRow from "./SettingsUploadInputRow";
 import Table from "./Table";
-
 import XLSX from "xlsx";
 
+import ElapsedTimer from "./ElapsedTimer";
+import dateFormat from "dateformat";
+
+import primary_default from "./default";
+
+import { short_to_long, long_to_short } from "./SettingsConverter";
+
 export default function DatabaseAddition({ jurisdiction_list }) {
-  const [jurisdiction, setJurisdiction] = useState(jurisdiction_list[0]);
+  const [jurisdiction, setJurisdiction] = useState(
+    primary_default.jurisdiction
+  );
   const [buttonString, setButtonString] = useState("Upload a file");
   const [file, setFile] = useState();
   const [date, setDate] = useState(new Date());
@@ -17,32 +27,63 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   const [tableData, setTableData] = useState();
   const [validInput, setValidInput] = useState(false);
 
-  let primary_default = [{ value: -2, label: "Select..." }];
-  const [barNumber, setBarNumber] = useState(primary_default);
-  const [firstName, setFirstName] = useState(primary_default);
-  const [lastName, setLastName] = useState(primary_default);
-  const [fullName, setFullName] = useState(primary_default);
-  const [phoneNumber1, setPhoneNumber1] = useState(primary_default);
-  const [phoneNumber2, setPhoneNumber2] = useState(primary_default);
-  const [email1, setEmail1] = useState(primary_default);
-  const [email2, setEmail2] = useState(primary_default);
-  const [address1, setAddress1] = useState(primary_default);
-  const [address2, setAddress2] = useState(primary_default);
-  const [dateOfAdmission, setDateOfAdmission] = useState(primary_default);
-  const [firm, setFirm] = useState(primary_default);
-  const [fax, setFax] = useState(primary_default);
-  const [license, setLicense] = useState(primary_default);
-  const [status, setStatus] = useState(primary_default);
+  const [barNumber, setBarNumber] = useState(primary_default.barNumber);
+  const [firstName, setFirstName] = useState(primary_default.firstName);
+  const [lastName, setLastName] = useState(primary_default.lastName);
+  const [fullName, setFullName] = useState(primary_default.fullName);
+  const [phoneNumber1, setPhoneNumber1] = useState(
+    primary_default.phoneNumber1
+  );
+  const [phoneNumber2, setPhoneNumber2] = useState(
+    primary_default.phoneNumber2
+  );
+  const [email1, setEmail1] = useState(primary_default.email1);
+  const [email2, setEmail2] = useState(primary_default.email2);
+  const [address1, setAddress1] = useState(primary_default.address1);
+  const [address2, setAddress2] = useState(primary_default.address2);
+  const [dateOfAdmission, setDateOfAdmission] = useState(
+    primary_default.dateOfAdmission
+  );
+  const [firm, setFirm] = useState(primary_default.firm);
+  const [fax, setFax] = useState(primary_default.fax);
+  const [license, setLicense] = useState(primary_default.license);
+  const [status, setStatus] = useState(primary_default.status);
 
   const [inputting, setInputting] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [processed, setProcessed] = useState(false);
 
+  const [newSettings, setNewSettings] = useState();
+
+  const [errorButtonClass, setErrorButtonClass] = useState("");
+  const [mappingError, setMappingError] = useState("");
+
+  function updateSettings(settings) {
+    settings = short_to_long(settings);
+    setJurisdiction(settings.jurisdiction);
+    setBarNumber(settings.barNumber);
+    setFirstName(settings.firstName);
+    setLastName(settings.lastName);
+    setFullName(settings.fullName);
+    setPhoneNumber1(settings.phoneNumber1);
+    setPhoneNumber2(settings.phoneNumber2);
+    setEmail1(settings.email1);
+    setEmail2(settings.email2);
+    setAddress1(settings.address1);
+    setAddress2(settings.address2);
+    setDateOfAdmission(settings.dateOfAdmission);
+    setFirm(settings.firm);
+    setFax(settings.fax);
+    setLicense(settings.license);
+    setStatus(settings.status);
+  }
+
   function next() {
     if (file === undefined) {
-      console.log("Missing file");
+      setErrorButtonClass("button-error");
       return;
     }
+    setErrorButtonClass("");
 
     parseFile(file).then((result) => {
       console.log(result);
@@ -88,70 +129,112 @@ export default function DatabaseAddition({ jurisdiction_list }) {
 
   function submit() {
     let valid = true;
+    let errStr = "";
+
     if (barNumber[0].value === -2) {
       valid = false;
+      errStr += "Bar Number, ";
     }
 
     if (firstName[0].value === -2) {
       valid = false;
+      errStr += "First Name, ";
     }
 
     if (lastName[0].value === -2) {
       valid = false;
+      errStr += "Last Name, ";
     }
 
     if (fullName[0].value === -2) {
       valid = false;
+      errStr += "Full Name, ";
     }
 
     if (phoneNumber1[0].value === -2) {
       valid = false;
+      errStr += "Primary Phone Number, ";
     }
 
     if (phoneNumber2[0].value === -2) {
       valid = false;
+      errStr += "Secondary Phone Number, ";
     }
 
     if (email1[0].value === -2) {
       valid = false;
+      errStr += "Primary Email, ";
     }
 
     if (email2[0].value === -2) {
       valid = false;
+      errStr += "Secondary Email, ";
     }
 
     if (address1[0].value === -2) {
       valid = false;
+      errStr += "Primary Address, ";
     }
 
     if (address2[0].value === -2) {
       valid = false;
+      errStr += "Secondary Address, ";
     }
 
     if (dateOfAdmission[0].value === -2) {
       valid = false;
+      errStr += "Date of Admission, ";
     }
 
     if (firm[0].value === -2) {
       valid = false;
+      errStr += "Law Firm, ";
     }
 
     if (fax[0].value === -2) {
       valid = false;
+      errStr += "Fax Number, ";
     }
 
     if (license[0].value === -2) {
       valid = false;
+      errStr += "License Type, ";
     }
 
     if (status[0].value === -2) {
       valid = false;
+      errStr += "Bar Status, ";
     }
 
     if (!valid) {
-      console.log("Missing primary field mapping");
+      errStr =
+        "ERROR: " +
+        errStr.substring(0, errStr.length - 2) +
+        " mapping not provided.";
+      setMappingError(errStr);
       return;
     }
+
+    let new_settings = {
+      barNumber: barNumber,
+      firstName: firstName,
+      lastName: lastName,
+      fullName: fullName,
+      phoneNumber1: phoneNumber1,
+      phoneNumber2: phoneNumber2,
+      email1: email1,
+      email2: email2,
+      address1: address1,
+      address2: address2,
+      dateOfAdmission: dateOfAdmission,
+      firm: firm,
+      fax: fax,
+      license: license,
+      status: status,
+      jurisdiction: jurisdiction,
+    };
+    new_settings = long_to_short(new_settings);
+    setNewSettings(new_settings);
 
     let _bar_number = mapColumnToValue(barNumber);
     let _first_name = mapColumnToValue(firstName);
@@ -169,48 +252,29 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     let _license = mapColumnToValue(license);
     let _status = mapColumnToValue(status);
 
-    //TODO: Change name to first name on backend
-    // let mapping = {
-    //   barNum: _bar_number,
-    //   firstName: _first_name,
-    //   lastName: _last_name,
-    //   fullName: _full_name,
-    //   phone1: _phone_number1,
-    //   phone2: _phone_number2,
-    //   email1: _email1,
-    //   email2: _email2,
-    //   address1: _address1,
-    //   address2: _address2,
-    //   dateOfAdmission: _date_of_admission,
-    //   firm: _firm,
-    //   fax: _fax,
-    //   license: _license,
-    //   status: _status,
-    // };
     let mapping = {
-      barNum: _bar_number[0],
-      name: _first_name[0],
-      lastName: _last_name[0],
-      fullName: _full_name[0],
-      phone1: _phone_number1[0],
-      phone2: _phone_number2[0],
-      email1: _email1[0],
-      email2: _email2[0],
-      address1: _address1[0],
-      address2: _address2[0],
-      dateOfAdmission: _date_of_admission[0],
-      firm: _firm[0],
-      fax: _fax[0],
-      license: _license[0],
-      status: _status[0],
+      barNum: _bar_number,
+      firstName: _first_name,
+      lastName: _last_name,
+      fullName: _full_name,
+      phone1: _phone_number1,
+      phone2: _phone_number2,
+      email1: _email1,
+      email2: _email2,
+      address1: _address1,
+      address2: _address2,
+      dateOfAdmission: _date_of_admission,
+      firm: _firm,
+      fax: _fax,
+      license: _license,
+      status: _status,
     };
-    console.log(mapping);
 
     let formData = new FormData();
     formData.append("data", file);
-    formData.append("fileName", file.name);
+    formData.append("settings", JSON.stringify(new_settings));
     formData.append("jurisdiction", jurisdiction);
-    formData.append("reportDate", date.toJSON().slice(0, 10));
+    formData.append("reportDate", dateFormat(date, "yyyy-mm-dd"));
     formData.append("mapping", JSON.stringify(mapping));
 
     setInputting(false);
@@ -229,12 +293,12 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       });
   }
 
-  function mapColumnToValue(obj) {
-    let rv = [];
-    obj.forEach((o) => {
-      rv.push(o.value);
+  function mapColumnToValue(objects) {
+    let returnValue = [];
+    objects.forEach((object) => {
+      returnValue.push(object.value);
     });
-    return rv;
+    return returnValue;
   }
 
   if (inputting) {
@@ -246,7 +310,9 @@ export default function DatabaseAddition({ jurisdiction_list }) {
           setFile={setFile}
           buttonString={buttonString}
           setButtonString={setButtonString}
+          errorButtonClass={errorButtonClass}
         />
+        <SettingsUploadInputRow updateSettings={updateSettings} />
         <JurisdictionInputRow
           jurisdiction={jurisdiction}
           setJurisdiction={setJurisdiction}
@@ -305,6 +371,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
               setStatus={setStatus}
               lastColumn={lastColumn}
             />
+            <div className="error-text">{mappingError}</div>
             <div className="button" onClick={submit}>
               <div className="button-link">Process</div>
             </div>
@@ -315,9 +382,14 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   } else if (processing) {
     return (
       <div className="flex-center">
-        <h3>Database Addition</h3>
+        <h3>Database Addition (Processing Data...)</h3>
         <hr className="small-hr" />
-        <h4>Processing Data...</h4>
+        <ElapsedTimer />
+        <SettingsDownloadRow
+          settings={newSettings}
+          date={date.toJSON().slice(0, 10)}
+          jurisdiction={jurisdiction}
+        />
       </div>
     );
   } else if (processed) {
@@ -326,6 +398,11 @@ export default function DatabaseAddition({ jurisdiction_list }) {
         <h3>Database Addition</h3>
         <hr className="small-hr" />
         <h4>Processed</h4>
+        <SettingsDownloadRow
+          settings={newSettings}
+          date={date.toJSON().slice(0, 10)}
+          jurisdiction={jurisdiction}
+        />
       </div>
     );
   } else {
