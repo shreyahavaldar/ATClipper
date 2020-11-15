@@ -1,7 +1,7 @@
 import ATClipper
 import time
 ATClipperObj = ATClipper.ATClipper('credentials.json')
-ATClipperObj.resetdb()
+#ATClipperObj.resetdb()
 ATClipperObj.parallel_upload("AttorneyObjects_small.json",50)
 mapping = {
   "barNum": 1,
