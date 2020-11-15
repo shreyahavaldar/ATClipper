@@ -9,8 +9,11 @@ import Table from "./Table";
 import XLSX from "xlsx";
 
 import ElapsedTimer from "./ElapsedTimer";
+import dateFormat from "dateformat";
 
 import primary_default from "./default";
+
+import { short_to_long, long_to_short } from "./SettingsConverter";
 
 export default function DatabaseAddition({ jurisdiction_list }) {
   const [jurisdiction, setJurisdiction] = useState(
@@ -52,7 +55,11 @@ export default function DatabaseAddition({ jurisdiction_list }) {
 
   const [newSettings, setNewSettings] = useState();
 
+  const [errorButtonClass, setErrorButtonClass] = useState("");
+  const [mappingError, setMappingError] = useState("");
+
   function updateSettings(settings) {
+    settings = short_to_long(settings);
     setJurisdiction(settings.jurisdiction);
     setBarNumber(settings.barNumber);
     setFirstName(settings.firstName);
@@ -73,9 +80,10 @@ export default function DatabaseAddition({ jurisdiction_list }) {
 
   function next() {
     if (file === undefined) {
-      console.log("Missing file");
+      setErrorButtonClass("button-error");
       return;
     }
+    setErrorButtonClass("");
 
     parseFile(file).then((result) => {
       console.log(result);
@@ -121,68 +129,89 @@ export default function DatabaseAddition({ jurisdiction_list }) {
 
   function submit() {
     let valid = true;
-    // if (barNumber[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (firstName[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (lastName[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (fullName[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (phoneNumber1[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (phoneNumber2[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (email1[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (email2[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (address1[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (address2[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (dateOfAdmission[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (firm[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (fax[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (license[0].value === -2) {
-    //   valid = false;
-    // }
-    //
-    // if (status[0].value === -2) {
-    //   valid = false;
-    // }
-    //
+    let errStr = "";
+
+    if (barNumber[0].value === -2) {
+      valid = false;
+      errStr += "Bar Number, ";
+    }
+
+    if (firstName[0].value === -2) {
+      valid = false;
+      errStr += "First Name, ";
+    }
+
+    if (lastName[0].value === -2) {
+      valid = false;
+      errStr += "Last Name, ";
+    }
+
+    if (fullName[0].value === -2) {
+      valid = false;
+      errStr += "Full Name, ";
+    }
+
+    if (phoneNumber1[0].value === -2) {
+      valid = false;
+      errStr += "Primary Phone Number, ";
+    }
+
+    if (phoneNumber2[0].value === -2) {
+      valid = false;
+      errStr += "Secondary Phone Number, ";
+    }
+
+    if (email1[0].value === -2) {
+      valid = false;
+      errStr += "Primary Email, ";
+    }
+
+    if (email2[0].value === -2) {
+      valid = false;
+      errStr += "Secondary Email, ";
+    }
+
+    if (address1[0].value === -2) {
+      valid = false;
+      errStr += "Primary Address, ";
+    }
+
+    if (address2[0].value === -2) {
+      valid = false;
+      errStr += "Secondary Address, ";
+    }
+
+    if (dateOfAdmission[0].value === -2) {
+      valid = false;
+      errStr += "Date of Admission, ";
+    }
+
+    if (firm[0].value === -2) {
+      valid = false;
+      errStr += "Law Firm, ";
+    }
+
+    if (fax[0].value === -2) {
+      valid = false;
+      errStr += "Fax Number, ";
+    }
+
+    if (license[0].value === -2) {
+      valid = false;
+      errStr += "License Type, ";
+    }
+
+    if (status[0].value === -2) {
+      valid = false;
+      errStr += "Bar Status, ";
+    }
+
     if (!valid) {
-      console.log("Missing primary field mapping");
+      errStr =
+        "ERROR: " +
+        errStr.substring(0, errStr.length - 2) +
+        " mapping not provided.";
+      setMappingError(errStr);
       return;
     }
 
@@ -204,6 +233,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       status: status,
       jurisdiction: jurisdiction,
     };
+    new_settings = long_to_short(new_settings);
     setNewSettings(new_settings);
 
     let _bar_number = mapColumnToValue(barNumber);
@@ -242,10 +272,9 @@ export default function DatabaseAddition({ jurisdiction_list }) {
 
     let formData = new FormData();
     formData.append("data", file);
-    formData.append("settings", new_settings);
-    formData.append("fileName", file.name);
+    formData.append("settings", JSON.stringify(new_settings));
     formData.append("jurisdiction", jurisdiction);
-    formData.append("reportDate", date.toJSON().slice(0, 10));
+    formData.append("reportDate", dateFormat(date, "yyyy-mm-dd"));
     formData.append("mapping", JSON.stringify(mapping));
 
     setInputting(false);
@@ -281,6 +310,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
           setFile={setFile}
           buttonString={buttonString}
           setButtonString={setButtonString}
+          errorButtonClass={errorButtonClass}
         />
         <SettingsUploadInputRow updateSettings={updateSettings} />
         <JurisdictionInputRow
@@ -341,6 +371,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
               setStatus={setStatus}
               lastColumn={lastColumn}
             />
+            <div className="error-text">{mappingError}</div>
             <div className="button" onClick={submit}>
               <div className="button-link">Process</div>
             </div>
@@ -367,6 +398,11 @@ export default function DatabaseAddition({ jurisdiction_list }) {
         <h3>Database Addition</h3>
         <hr className="small-hr" />
         <h4>Processed</h4>
+        <SettingsDownloadRow
+          settings={newSettings}
+          date={date.toJSON().slice(0, 10)}
+          jurisdiction={jurisdiction}
+        />
       </div>
     );
   } else {

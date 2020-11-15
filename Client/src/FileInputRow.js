@@ -6,6 +6,7 @@ export default function FileInputRow({
   buttonString,
   setFile,
   setButtonString,
+  errorButtonClass,
 }) {
   const hiddenInput = React.useRef(null);
 
@@ -15,8 +16,10 @@ export default function FileInputRow({
     setButtonString(event.target.files[0].name);
   }
 
+  let classType = `input-button ${errorButtonClass}`;
+
   return (
-    <div className="flex-row">
+    <div className="flex-row" id="file-input-row">
       <div className="flex-row-left">
         <label className="form-label" htmlFor="file">
           Input
@@ -33,7 +36,7 @@ export default function FileInputRow({
         </ReactTooltip>
       </div>
       <button
-        className="input-button"
+        className={classType}
         onClick={(event) => hiddenInput.current.click()}
       >
         {buttonString}

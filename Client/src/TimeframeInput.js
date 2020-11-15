@@ -1,17 +1,32 @@
 import React from "react";
 
-import DatePicker from "react-date-picker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default function TimeframeInput({ startDate, setStartDate, endDate, setEndDate }) {
+export default function TimeframeInput({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+}) {
   return (
     <div className="flex-row">
-      <label className="form-label" htmlFor="dropdown">
+      <label className="form-label-time" htmlFor="dropdown">
         Timeframe:
       </label>
-      <div className="flex-row-right">
-        <DatePicker onChange={setStartDate} value={startDate} />
+      <div className="flex-row-right-time">
+        <DatePicker
+          selected={startDate}
+          onChange={(newDate) => setStartDate(newDate)}
+          className="full-width"
+        />
+
         <div>to</div>
-        <DatePicker onChange={setEndDate} value={endDate} />
+        <DatePicker
+          selected={endDate}
+          onChange={(newDate) => setEndDate(newDate)}
+          className="full-width"
+        />
       </div>
     </div>
   );

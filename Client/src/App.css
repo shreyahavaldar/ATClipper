@@ -1,6 +1,5 @@
 .header {
   width: 100vw;
-  height: 94px;
   display: flex;
   flex-direction: column;
   background-color: #262626;
@@ -95,10 +94,12 @@ h2 {
   display: flex;
   width: 100%;
   min-width: 500px;
-  margin: 0 auto;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  padding: 0px 5px 0px 10px;
+  border-radius: 4px;
 }
 
 .flex-row-right {
@@ -172,6 +173,8 @@ th {
 
 .multiselect {
   width: calc(100% - 325px);
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .column-mapping-title {
@@ -211,11 +214,72 @@ input[type="text"] {
 
 .searchBox {
   float: left !important;
-  padding: 0px 0px 10px 5px !important;
+  padding: 0px 0px 0px 0px !important;
   font-size: 18px !important;
-  min-height: 22px;
+  height: 0px;
 }
 
 span.chip {
   float: left;
+}
+
+.form-label-time {
+  margin: auto 0;
+  width: 150px;
+  text-align: left;
+}
+.flex-row-right-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(100% - 250px);
+  max-width: 600px;
+}
+
+.react-datepicker__input-container input[type="text"] {
+  width: 100% !important;
+}
+
+.flex-row-export {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 250px);
+  min-width: 500px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.form-label-export {
+  width: 200px;
+  text-align: left;
+}
+
+.export-item {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-left: 4px;
+}
+
+.flex-center-vert {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: red;
+}
+
+.button-error {
+  background-color: #f73d34;
+}
+
+.error-text {
+  color: red;
+  text-align: left;
 }

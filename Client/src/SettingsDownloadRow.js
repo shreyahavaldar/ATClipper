@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function SettingsDownloadRow({ settings, date, jurisdiction }) {
-  let jsonData = { test: "true" };
-
   function download(content, fileName, contentType) {
     const a = document.createElement("a");
     const file = new Blob([content], { type: contentType });
