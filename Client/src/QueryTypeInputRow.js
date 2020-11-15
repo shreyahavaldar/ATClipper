@@ -4,6 +4,7 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
 export default function QueryTypeInputRow({ query, setQuery, queryList }) {
+  //Render the query type input row
   return (
     <div className="flex-row">
       <label className="form-label" htmlFor="dropdown">

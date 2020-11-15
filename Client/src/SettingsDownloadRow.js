@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function SettingsDownloadRow({ settings, date, jurisdiction }) {
+  //Download the js file
   function download(content, fileName, contentType) {
     const a = document.createElement("a");
     const file = new Blob([content], { type: contentType });
@@ -9,6 +10,7 @@ export default function SettingsDownloadRow({ settings, date, jurisdiction }) {
     a.click();
   }
 
+  //onDownload function to call the download file function with the correct parameters
   function onDownload() {
     let name = `settings_${jurisdiction}_${date}.json`;
     download(JSON.stringify(settings), name, "text/plain");

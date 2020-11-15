@@ -9,6 +9,7 @@ export default function JurisdictionInputRow({
   jurisdiction_list,
 }) {
   return (
+    //Input row for the jurisdiction selection object
     <div className="flex-row">
       <label className="form-label" htmlFor="dropdown">
         Report Jurisdiction:

@@ -6,6 +6,7 @@ export default function SettingsUploadInputRow({ updateSettings }) {
   const hiddenInput = React.useRef(null);
   const [buttonString, setButtonString] = useState("Upload a file (optional)");
 
+  //On settings file upload, parse the settings file and update the settubgs
   function onChange(event) {
     let settings = event.target.files[0];
     setButtonString(settings.name);
@@ -20,6 +21,7 @@ export default function SettingsUploadInputRow({ updateSettings }) {
     };
   }
 
+  //Return the settings upload component
   return (
     <div className="flex-row">
       <div className="flex-row-left">

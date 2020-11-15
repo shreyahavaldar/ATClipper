@@ -10,7 +10,9 @@ export default function PrimaryFieldInputRow({
   setColumn,
   options,
 }) {
+  //When the user selects a new column for primary field, set the update the list of items
   function onSelect(list, item) {
+    //Check to see if there are any previous values and overwrit ethe whole list if not
     if (
       column === undefined ||
       column[0] === undefined ||
@@ -18,15 +20,16 @@ export default function PrimaryFieldInputRow({
     ) {
       list = [item];
     }
+    //Updat the list
     setColumn(list);
   }
 
+  //Remove the item and update the list
   function onRemove(list, item) {
-    console.log(list);
-    console.log(item);
     setColumn(list);
   }
 
+  //Return the primary field input row
   return (
     <div className="flex-row-pf">
       <label className="form-label" htmlFor={fieldId}>

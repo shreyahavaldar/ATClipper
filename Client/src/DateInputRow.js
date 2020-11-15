@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateInputRow({ date, setDate }) {
+  //Input row for single date input
   return (
     <div className="flex-row">
       <label className="form-label" htmlFor="dropdown">

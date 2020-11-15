@@ -36,6 +36,7 @@ export default function PrimaryFieldRenderer({
   setStatus,
   lastColumn,
 }) {
+  //Create each column mapping list, made from column 0 to the last provided column number
   let options = [{ value: -1, label: "N/A" }];
   for (let i = 0; i < lastColumn; i++) {
     let obj = {
@@ -45,6 +46,7 @@ export default function PrimaryFieldRenderer({
     options.push(obj);
   }
 
+  //Render each primary field
   return (
     <>
       <div className="column-mapping-title">

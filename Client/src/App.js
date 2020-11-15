@@ -10,6 +10,7 @@ import DatabaseAddition from "./DatabaseAddition";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+  //List of jurisdiction locations
   const jurisdiction_list = [
     "All",
     "AL",

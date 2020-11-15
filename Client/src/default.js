@@ -1,3 +1,4 @@
+//Default settings object
 let primary_default = {
   barNumber: [
     {

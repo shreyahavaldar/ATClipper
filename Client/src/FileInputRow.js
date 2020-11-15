@@ -10,14 +10,17 @@ export default function FileInputRow({
 }) {
   const hiddenInput = React.useRef(null);
 
+  //Function to update the file and its button string
   function onChange(event) {
     setFile(event.target.files[0]);
     console.log(event.target.files[0]);
     setButtonString(event.target.files[0].name);
   }
 
+  //Set the input button class
   let classType = `input-button ${errorButtonClass}`;
 
+  //Return the input row for the file input
   return (
     <div className="flex-row" id="file-input-row">
       <div className="flex-row-left">
