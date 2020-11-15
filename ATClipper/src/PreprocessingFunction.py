@@ -14,7 +14,7 @@ def processAddress(columns, df):
             address_temp = ""
             for c in columns:
                 address_temp += str(dataframe.loc[x][c-1]).strip() + " "
-            addresses.append(normalizeAddress(address_temp.strip()))
+            addresses.append(address_temp.strip())
         return addresses
 
 def processName(columns, df):
@@ -26,7 +26,7 @@ def processName(columns, df):
             name_temp = ""
             for c in columns:
                 name_temp += str(dataframe.loc[x][dataframe.columns[c-1]]).strip() + " "
-            names.append(name_temp)
+            names.append(name_temp.strip())
         return names
 
 def secondaryInfoColumns(mapping, dataframe):
@@ -95,7 +95,7 @@ def normalizeAddress(address):
 def readDataFrame(mapping, dataframe):
     barNumberIndexes = []
     if(mapping["barNum"][0] != -1):
-        for barNum in (dataframe.iloc[:, mapping["barNum"][0]]):
+        for barNum in (dataframe.iloc[:, mapping["barNum"][0]-1]):
             barNumberIndexes.append(stateName + "_" + str(barNum))
     else:
         for i in range(len(dataframe)):
@@ -103,7 +103,7 @@ def readDataFrame(mapping, dataframe):
 
     datesOfAdmission = []
     if(mapping["dateOfAdmission"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["dateOfAdmission"][0]]):
+        for x in (dataframe.iloc[:, mapping["dateOfAdmission"][0]-1]):
             datesOfAdmission.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -111,7 +111,7 @@ def readDataFrame(mapping, dataframe):
 
     firstNames = []
     if(mapping["firstName"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["firstName"][0]]):
+        for x in (dataframe.iloc[:, mapping["firstName"][0]-1]):
             firstNames.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -119,7 +119,7 @@ def readDataFrame(mapping, dataframe):
 
     lastNames = []
     if(mapping["lastName"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["lastName"][0]]):
+        for x in (dataframe.iloc[:, mapping["lastName"][0]-1]):
             lastNames.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -127,14 +127,16 @@ def readDataFrame(mapping, dataframe):
 
     names = []
     if(mapping["name"][0] != -1):
-        names = processName(mapping["name"], dataframe)
+        names_temp = processName(mapping["name"], dataframe)
+        for x in (names_temp):
+            names.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
             names.append("0")
 
     phones1 = []
     if(mapping["phone1"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["phone1"][0]]):
+        for x in (dataframe.iloc[:, mapping["phone1"][0]-1]):
             phones1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -142,7 +144,7 @@ def readDataFrame(mapping, dataframe):
 
     phones2 = []
     if(mapping["phone2"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["phone2"][0]]):
+        for x in (dataframe.iloc[:, mapping["phone2"][0]-1]):
             phones2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -150,7 +152,7 @@ def readDataFrame(mapping, dataframe):
 
     emails1 = []
     if(mapping["email1"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["email1"][0]]):
+        for x in (dataframe.iloc[:, mapping["email1"][0]-1]):
             emails1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -158,7 +160,7 @@ def readDataFrame(mapping, dataframe):
 
     emails2 = []
     if(mapping["email2"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["email2"][0]]):
+        for x in (dataframe.iloc[:, mapping["email2"][0]-1]):
             emails2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -180,7 +182,7 @@ def readDataFrame(mapping, dataframe):
 
     firms = []
     if(mapping["firm"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["firm"][0]]):
+        for x in (dataframe.iloc[:, mapping["firm"][0]-1]):
             firms.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -188,7 +190,7 @@ def readDataFrame(mapping, dataframe):
 
     faxes = []
     if(mapping["fax"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["fax"][0]]):
+        for x in (dataframe.iloc[:, mapping["fax"][0]-1]):
             faxes.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -196,7 +198,7 @@ def readDataFrame(mapping, dataframe):
 
     licenses = []
     if(mapping["license"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["license"][0]]):
+        for x in (dataframe.iloc[:, mapping["license"][0]-1]):
             licenses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -204,7 +206,7 @@ def readDataFrame(mapping, dataframe):
 
     statuses = []
     if(mapping["status"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["status"][0]]):
+        for x in (dataframe.iloc[:, mapping["status"][0]-1]):
             statuses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -227,8 +229,8 @@ def readDataFrame(mapping, dataframe):
         def __init__(self, BarNumberIndex, DateOfAdmission, FirstName, LastName, Name, Phone1, Phone2, Email1, Email2, Address1, Address2, Firm, Fax, License, Status, SecondaryInfo):
             self.BarNumberIndex = BarNumberIndex
             self.DateOfAdmission = DateOfAdmission
-            self.FirstName = firstName
-            self.LastName = lastName
+            self.FirstName = FirstName
+            self.LastName = LastName
             self.Name = Name
             self.Phone1 = Phone1
             self.Phone2 = Phone2
@@ -262,19 +264,21 @@ def readDataFrame(mapping, dataframe):
 # ------------ Main Call --------------
 
 # mapping = {
-#   "barNum": 1,
-#   "dateOfAdmission" : 2,
+#   "barNum": [1],
+#   "dateOfAdmission" : [2],
+#   "firstName": [-1],
+#   "lastName": [-1],
 #   "name" : [5, 4],
-#   "phone1" : 15,
-#   "phone2" : -1,
-#   "email1" : 17,
-#   "email2" : -1,
+#   "phone1" : [15],
+#   "phone2" : [-1],
+#   "email1" : [17],
+#   "email2" : [-1],
 #   "address1" : [7,8,9,10,11,12],
-#   "address2" : -1,
-#   "firm" : 18,
-#   "fax" : 16,
-#   "license" : -1,
-#   "status" : 6
+#   "address2" : [-1],
+#   "firm" : [18],
+#   "fax" : [16],
+#   "license" : [-1],
+#   "status" : [6]
 # }
 
 def processMappedFile(mapping, fileName, jurisdiction):
