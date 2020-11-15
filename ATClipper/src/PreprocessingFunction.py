@@ -7,25 +7,25 @@ API_KEY = "AIzaSyDX5Yq0nB81RRdqTVe6SQN2WEy8CM_XmLw"
 
 def processAddress(columns, df):
     if(len(columns) == 1):
-        return (dataframe.iloc[:, columns[0]-1])
+        return (dataframe.iloc[:, columns[0]])
     else:
         addresses = []
         for x in range(len(dataframe)):
             address_temp = ""
             for c in columns:
-                address_temp += str(dataframe.loc[x][c-1]).strip() + " "
+                address_temp += str(dataframe.loc[x][c]).strip() + " "
             addresses.append(address_temp.strip())
         return addresses
 
 def processName(columns, df):
     if(len(columns) == 1):
-        return (dataframe.iloc[:, columns[0]-1])
+        return (dataframe.iloc[:, columns[0]])
     else:
         names = []
         for x in range(len(dataframe)):
             name_temp = ""
             for c in columns:
-                name_temp += str(dataframe.loc[x][dataframe.columns[c-1]]).strip() + " "
+                name_temp += str(dataframe.loc[x][dataframe.columns[c]]).strip() + " "
             names.append(name_temp.strip())
         return names
 
@@ -95,7 +95,7 @@ def normalizeAddress(address):
 def readDataFrame(mapping, dataframe):
     barNumberIndexes = []
     if(mapping["barNum"][0] != -1):
-        for barNum in (dataframe.iloc[:, mapping["barNum"][0]-1]):
+        for barNum in (dataframe.iloc[:, mapping["barNum"][0]]):
             barNumberIndexes.append(stateName + "_" + str(barNum))
     else:
         for i in range(len(dataframe)):
@@ -103,7 +103,7 @@ def readDataFrame(mapping, dataframe):
 
     datesOfAdmission = []
     if(mapping["dateOfAdmission"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["dateOfAdmission"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["dateOfAdmission"][0]]):
             datesOfAdmission.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -111,7 +111,7 @@ def readDataFrame(mapping, dataframe):
 
     firstNames = []
     if(mapping["firstName"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["firstName"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["firstName"][0]]):
             firstNames.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -119,7 +119,7 @@ def readDataFrame(mapping, dataframe):
 
     lastNames = []
     if(mapping["lastName"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["lastName"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["lastName"][0]]):
             lastNames.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -136,7 +136,7 @@ def readDataFrame(mapping, dataframe):
 
     phones1 = []
     if(mapping["phone1"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["phone1"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["phone1"][0]]):
             phones1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -144,7 +144,7 @@ def readDataFrame(mapping, dataframe):
 
     phones2 = []
     if(mapping["phone2"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["phone2"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["phone2"][0]]):
             phones2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -152,7 +152,7 @@ def readDataFrame(mapping, dataframe):
 
     emails1 = []
     if(mapping["email1"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["email1"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["email1"][0]]):
             emails1.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -160,7 +160,7 @@ def readDataFrame(mapping, dataframe):
 
     emails2 = []
     if(mapping["email2"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["email2"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["email2"][0]]):
             emails2.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -182,7 +182,7 @@ def readDataFrame(mapping, dataframe):
 
     firms = []
     if(mapping["firm"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["firm"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["firm"][0]]):
             firms.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -190,7 +190,7 @@ def readDataFrame(mapping, dataframe):
 
     faxes = []
     if(mapping["fax"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["fax"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["fax"][0]]):
             faxes.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -198,7 +198,7 @@ def readDataFrame(mapping, dataframe):
 
     licenses = []
     if(mapping["license"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["license"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["license"][0]]):
             licenses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
@@ -206,7 +206,7 @@ def readDataFrame(mapping, dataframe):
 
     statuses = []
     if(mapping["status"][0] != -1):
-        for x in (dataframe.iloc[:, mapping["status"][0]-1]):
+        for x in (dataframe.iloc[:, mapping["status"][0]]):
             statuses.append(str(x).strip())
     else:
         for i in range(len(dataframe)):
