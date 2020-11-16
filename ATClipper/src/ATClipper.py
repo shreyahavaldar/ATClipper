@@ -275,6 +275,11 @@ class ATClipper():
                 data = list(reader)
             self.identifiers = data
 
+        def load_csv_string(self,string):
+            reader = csv.reader(string)
+            data = list(reader)
+            self.identifiers = data
+
 
 
 
