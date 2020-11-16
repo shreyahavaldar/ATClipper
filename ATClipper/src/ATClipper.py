@@ -10,6 +10,7 @@ import queue
 from datetime import datetime
 import pandas as pd
 import copy
+import csv
 
 
 class ATClipper():
@@ -189,7 +190,9 @@ class ATClipper():
                     ,"license"
                     ,"status"
                     ,"state"
-                    ,"secondary_info","time_inserted","time_superseded"]
+                    ,"secondary_info",
+                    "time_inserted",
+                    "time_superseded"]
 
             cols_to_export = copy.copy(headers)
             if exclude != None:
@@ -224,7 +227,6 @@ class ATClipper():
             set_to = set(set_to.keys())
             self.identifiers = set_from.union(set_to)
             self.corpus = box
-            #return set_from.union(set_to), box
 
         def load_pst(self,filename):
 
@@ -266,10 +268,12 @@ class ATClipper():
 
             self.identifiers = set(identifier_set.keys())
             self.identifiers.add("daroncase@aol.com")
-            return report
 
-
-    Num_Of_threads = 5
+        def load_csv(self,filename):
+            with open(filename, newline='') as f:
+                reader = csv.reader(f)
+                data = list(reader)
+            self.identifiers = data
 
 
 
