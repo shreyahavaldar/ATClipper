@@ -1,3 +1,7 @@
+//Quick Explaination:
+//Short settings format does not include the label for the column mapping which is the information used by the column mapping to display to the user. We store the settings files using the short format, which are then convereted to the long format to display to the user. When the user downloads the settings file it converts back to the short format
+
+//Convert the settings file from short to long format
 function short_to_long(settings) {
   settings.barNumber = settings.barNumber.map(json_to_js_map);
   settings.firstName = settings.firstName.map(json_to_js_map);
@@ -17,6 +21,7 @@ function short_to_long(settings) {
   return settings;
 }
 
+//Function to map the short to the long format
 function json_to_js_map(n) {
   let label = "Column " + n;
   if (n === -1) {
@@ -28,7 +33,7 @@ function json_to_js_map(n) {
   };
   return rv;
 }
-
+//Convert the settings file from long to short format
 function long_to_short(settings) {
   settings.barNumber = settings.barNumber.map(js_to_json_map);
   settings.firstName = settings.firstName.map(js_to_json_map);
@@ -48,8 +53,10 @@ function long_to_short(settings) {
   return settings;
 }
 
+//Function to map the long to the short format
 function js_to_json_map(obj) {
   return obj.value;
 }
 
+//Export the functions
 export { short_to_long, long_to_short };

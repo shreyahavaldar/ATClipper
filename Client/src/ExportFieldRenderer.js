@@ -36,6 +36,7 @@ export default function ExportFieldRenderer({
   setSecondaryInfo,
 }) {
   return (
+    //Render all of the export settings rows
     <div className="flex-row">
       <div className="form-label-export">Exported Fields:</div>
       <div className="flex-row-export">

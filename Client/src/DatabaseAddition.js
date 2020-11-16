@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ElapsedTimer from "./ElapsedTimer";
 import FileInputRow from "./FileInputRow";
 import DateInputRow from "./DateInputRow";
 import JurisdictionInputRow from "./JurisdictionInputRow";
@@ -8,25 +9,30 @@ import SettingsUploadInputRow from "./SettingsUploadInputRow";
 import Table from "./Table";
 import XLSX from "xlsx";
 
-import ElapsedTimer from "./ElapsedTimer";
 import dateFormat from "dateformat";
-
 import primary_default from "./default";
 
 import { short_to_long, long_to_short } from "./SettingsConverter";
 
 export default function DatabaseAddition({ jurisdiction_list }) {
+  //Define all the state variables for user input
   const [jurisdiction, setJurisdiction] = useState(
     primary_default.jurisdiction
   );
-  const [buttonString, setButtonString] = useState("Upload a file");
   const [file, setFile] = useState();
   const [date, setDate] = useState(new Date());
 
+  //Button string for uploaded file
+  const [buttonString, setButtonString] = useState("Upload a file");
+
+  //Last column and table data states
   const [lastColumn, setLastColumn] = useState(0);
   const [tableData, setTableData] = useState();
+
+  //Stae for valid table input
   const [validInput, setValidInput] = useState(false);
 
+  //Primary field states
   const [barNumber, setBarNumber] = useState(primary_default.barNumber);
   const [firstName, setFirstName] = useState(primary_default.firstName);
   const [lastName, setLastName] = useState(primary_default.lastName);
@@ -49,17 +55,27 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   const [license, setLicense] = useState(primary_default.license);
   const [status, setStatus] = useState(primary_default.status);
 
+  //State variables for the current step
   const [inputting, setInputting] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [processed, setProcessed] = useState(false);
 
+  //New settings mapping to download on user request
   const [newSettings, setNewSettings] = useState();
 
+  //Error states
   const [errorButtonClass, setErrorButtonClass] = useState("");
   const [mappingError, setMappingError] = useState("");
 
+  //Loading state
+  const [loadingString, setLoadingString] = useState("Next");
+
+  //Update settings based on user uploaded settings file
   function updateSettings(settings) {
+    //Convert short settings format to extended long settings format
     settings = short_to_long(settings);
+
+    //Apply settings to mapping fields
     setJurisdiction(settings.jurisdiction);
     setBarNumber(settings.barNumber);
     setFirstName(settings.firstName);
@@ -78,21 +94,28 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     setStatus(settings.status);
   }
 
+  //Proceed to second set of database addition - loads table to preview the file
   function next() {
+    //Ensure that the user has entered a file
     if (file === undefined) {
       setErrorButtonClass("button-error");
       return;
     }
     setErrorButtonClass("");
 
+    setLoadingString("Loading...");
+
+    //Parse the file and move onto the next section
     parseFile(file).then((result) => {
       console.log(result);
+      setLoadingString("");
       setLastColumn(result[0].length);
       setTableData(result);
       setValidInput(true);
     });
   }
 
+  //Parse the file and return the results
   function parseFile(file) {
     return new Promise(function (resolve, reject) {
       let name_arr = file.name.split(".");
@@ -107,6 +130,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     });
   }
 
+  //Function to read xlsx or csv file using the XLSX package
   function reader(file) {
     return new Promise(function (resolve, reject) {
       const reader = new FileReader();
@@ -127,85 +151,102 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     });
   }
 
+  //Function that submits the database addition to the back
   function submit() {
     let valid = true;
     let errStr = "";
 
+    //Check that there is a valid barNumber mapping
     if (barNumber[0].value === -2) {
       valid = false;
       errStr += "Bar Number, ";
     }
 
+    //Check that there is a valid firstName mapping
     if (firstName[0].value === -2) {
       valid = false;
       errStr += "First Name, ";
     }
 
+    //Check that there is a valid lastName mapping
     if (lastName[0].value === -2) {
       valid = false;
       errStr += "Last Name, ";
     }
 
+    //Check that there is a valid fullName mapping
     if (fullName[0].value === -2) {
       valid = false;
       errStr += "Full Name, ";
     }
 
+    //Check that there is a valid phoneNumber1 mapping
     if (phoneNumber1[0].value === -2) {
       valid = false;
       errStr += "Primary Phone Number, ";
     }
 
+    //Check that there is a valid phoneNumber2 mapping
     if (phoneNumber2[0].value === -2) {
       valid = false;
       errStr += "Secondary Phone Number, ";
     }
 
+    //Check that there is a valid email1 mapping
     if (email1[0].value === -2) {
       valid = false;
       errStr += "Primary Email, ";
     }
 
+    //Check that there is a valid email2 mapping
     if (email2[0].value === -2) {
       valid = false;
       errStr += "Secondary Email, ";
     }
 
+    //Check that there is a valid address1 mapping
     if (address1[0].value === -2) {
       valid = false;
       errStr += "Primary Address, ";
     }
 
+    //Check that there is a valid address2 mapping
     if (address2[0].value === -2) {
       valid = false;
       errStr += "Secondary Address, ";
     }
 
+    //Check that there is a valid dateOfAdmission mapping
     if (dateOfAdmission[0].value === -2) {
       valid = false;
       errStr += "Date of Admission, ";
     }
 
+    //Check that there is a valid firm mapping
     if (firm[0].value === -2) {
       valid = false;
       errStr += "Law Firm, ";
     }
 
+    //Check that there is a valid fax mapping
     if (fax[0].value === -2) {
       valid = false;
       errStr += "Fax Number, ";
     }
 
+    //Check that there is a valid license mapping
     if (license[0].value === -2) {
       valid = false;
       errStr += "License Type, ";
     }
 
+    //Check that there is a valid status mapping
     if (status[0].value === -2) {
       valid = false;
       errStr += "Bar Status, ";
     }
 
+    //Check if there is a valid mapping
     if (!valid) {
       errStr =
         "ERROR: " +
@@ -215,6 +256,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       return;
     }
 
+    //Create the new settings mapping
     let new_settings = {
       barNumber: barNumber,
       firstName: firstName,
@@ -233,9 +275,11 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       status: status,
       jurisdiction: jurisdiction,
     };
+    //Convert the settings file to the correct version for download
     new_settings = long_to_short(new_settings);
     setNewSettings(new_settings);
 
+    //Map the column to a value
     let _bar_number = mapColumnToValue(barNumber);
     let _first_name = mapColumnToValue(firstName);
     let _last_name = mapColumnToValue(lastName);
@@ -252,11 +296,12 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     let _license = mapColumnToValue(license);
     let _status = mapColumnToValue(status);
 
+    //Create the mapping object
     let mapping = {
       barNum: _bar_number,
       firstName: _first_name,
       lastName: _last_name,
-      fullName: _full_name,
+      name: _full_name,
       phone1: _phone_number1,
       phone2: _phone_number2,
       email1: _email1,
@@ -270,6 +315,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       status: _status,
     };
 
+    //create the form data to send to the backend
     let formData = new FormData();
     formData.append("data", file);
     formData.append("settings", JSON.stringify(new_settings));
@@ -277,22 +323,28 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     formData.append("reportDate", dateFormat(date, "yyyy-mm-dd"));
     formData.append("mapping", JSON.stringify(mapping));
 
+    //Proceed to uploading the file
     setInputting(false);
     setProcessing(true);
 
+    //Upload addition to the backend
     fetch("http://localhost:5000/add", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
+        //Advance to processed page
         setProcessing(false);
         setProcessed(true);
-
-        console.log(data);
+        if (data.response === "success") {
+          let updated = data.updated;
+          console.log(data);
+        }
       });
   }
 
+  //Map each column mapping to a smaller value
   function mapColumnToValue(objects) {
     let returnValue = [];
     objects.forEach((object) => {
@@ -301,6 +353,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
     return returnValue;
   }
 
+  //Load the inputting page if still inputting info
   if (inputting) {
     return (
       <div className="flex-center">
@@ -322,7 +375,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
 
         {!validInput ? (
           <div className="button" onClick={next}>
-            <div className="button-link">Next</div>
+            <div className="button-link">{loadingString}</div>
           </div>
         ) : (
           <div>
@@ -335,7 +388,9 @@ export default function DatabaseAddition({ jurisdiction_list }) {
                 </div>
               </>
             ) : (
-              <div>BAD TABLE DATA</div>
+              <div>
+                Invalid table data, please reload the page and try again
+              </div>
             )}
 
             <PrimaryFieldRenderer
@@ -380,6 +435,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       </div>
     );
   } else if (processing) {
+    //Once the user submits load the processing page
     return (
       <div className="flex-center">
         <h3>Database Addition (Processing Data...)</h3>
@@ -393,6 +449,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
       </div>
     );
   } else if (processed) {
+    //Once the backend responds load the processing page
     return (
       <div className="flex-center">
         <h3>Database Addition</h3>

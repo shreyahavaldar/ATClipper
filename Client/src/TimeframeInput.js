@@ -21,7 +21,7 @@ export default function TimeframeInput({
           className="full-width"
         />
 
-        <div>to</div>
+        <div className="to-field">to</div>
         <DatePicker
           selected={endDate}
           onChange={(newDate) => setEndDate(newDate)}

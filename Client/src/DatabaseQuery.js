@@ -9,6 +9,7 @@ import ExportFieldRenderer from "./ExportFieldRenderer";
 import dateFormat from "dateformat";
 
 export default function DatabaseQuery({ jurisdiction_list }) {
+  //Default query list options
   let query_list = [
     {
       value: "phone",
@@ -20,17 +21,22 @@ export default function DatabaseQuery({ jurisdiction_list }) {
     },
   ];
 
+  //State to store the user uploaded variables
   const [file, setFile] = useState();
-  const [buttonString, setButtonString] = useState("Upload a file");
   const [jurisdiction, setJurisdiction] = useState(jurisdiction_list[0]);
   const [query, setQuery] = useState(query_list[0].value);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  //State to store the file name to use as the button string
+  const [buttonString, setButtonString] = useState("Upload a file");
+
+  //State variables for the current step
   const [inputting, setInputting] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [processed, setProcessed] = useState(false);
 
+  //State to store the value of each primary field (true if we want to export that field)
   const [barNumber, setBarNumber] = useState(true);
   const [firstName, setFirstName] = useState(true);
   const [lastName, setLastName] = useState(true);
@@ -48,15 +54,19 @@ export default function DatabaseQuery({ jurisdiction_list }) {
   const [status, setStatus] = useState(true);
   const [secondaryInfo, setSecondaryInfo] = useState(true);
 
+  //State to store the error button class
   const [errorButtonClass, setErrorButtonClass] = useState("");
 
+  //Once the user clicks search process their request
   function search() {
+    //If the file is not defined, add a button error class
     if (file === undefined) {
       setErrorButtonClass("button-error");
       return;
     }
     setErrorButtonClass("");
 
+    //Generate the export settings json object
     let export_settings = {
       barNumber: barNumber,
       firstName: firstName,
@@ -76,6 +86,7 @@ export default function DatabaseQuery({ jurisdiction_list }) {
       secondaryInfo: secondaryInfo,
     };
 
+    //Create the form data object
     let formData = new FormData();
     formData.append("data", file);
     formData.append("exportSettings", JSON.stringify(export_settings));
@@ -84,21 +95,25 @@ export default function DatabaseQuery({ jurisdiction_list }) {
     formData.append("startDate", dateFormat(startDate, "yyyy-mm-dd"));
     formData.append("endDate", dateFormat(endDate, "yyyy-mm-dd"));
 
+    //Step to the next page
     setInputting(false);
     setProcessing(true);
 
+    //Call the query API route on the backend and pass the formdata
     fetch("http://localhost:5000/query", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
+        //Wait for the response and step to the final page
         console.log(data);
         setProcessing(false);
         setProcessed(true);
       });
   }
 
+  //Load the inputting page if on that step
   if (inputting) {
     return (
       <div className="flex-center">
@@ -168,6 +183,7 @@ export default function DatabaseQuery({ jurisdiction_list }) {
       </div>
     );
   } else if (processing) {
+    //Load the processing page if on that step
     return (
       <div className="flex-center">
         <h3>Database Query (Processing Data...)</h3>
@@ -176,6 +192,7 @@ export default function DatabaseQuery({ jurisdiction_list }) {
       </div>
     );
   } else if (processed) {
+    //Load the final page if on that step
     return (
       <div className="flex-center">
         <h3>Database Query</h3>

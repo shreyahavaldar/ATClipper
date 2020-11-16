@@ -2,6 +2,7 @@ import React from "react";
 import Timer from "react-compound-timer";
 
 export default function ElapsedTimer() {
+  //Timer component to be used on the processing request page
   return (
     <div className="flex-row">
       <label className="form-label">Time Elapsed:</label>
