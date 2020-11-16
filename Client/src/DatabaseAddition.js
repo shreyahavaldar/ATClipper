@@ -338,7 +338,6 @@ export default function DatabaseAddition({ jurisdiction_list }) {
         setProcessing(false);
         setProcessed(true);
         if (data.response === "success") {
-          let updated = data.updated;
           console.log(data);
         }
       });
@@ -364,6 +363,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
           buttonString={buttonString}
           setButtonString={setButtonString}
           errorButtonClass={errorButtonClass}
+          tooltipString={"Choose an excel or csv file to be parsed"}
         />
         <SettingsUploadInputRow updateSettings={updateSettings} />
         <JurisdictionInputRow

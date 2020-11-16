@@ -7,6 +7,7 @@ export default function FileInputRow({
   setFile,
   setButtonString,
   errorButtonClass,
+  tooltipString,
 }) {
   const hiddenInput = React.useRef(null);
 
@@ -35,7 +36,7 @@ export default function FileInputRow({
           data-for="inputTip"
         ></img>
         <ReactTooltip id="inputTip" place="right" effect="solid">
-          Choose an excel or csv file to be parsed
+          {tooltipString}
         </ReactTooltip>
       </div>
       <button

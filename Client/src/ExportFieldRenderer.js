@@ -4,12 +4,6 @@ import ExportInputRow from "./ExportInputRow";
 export default function ExportFieldRenderer({
   barNumber,
   setBarNumber,
-  firstName,
-  setFirstName,
-  lastName,
-  setLastName,
-  fullName,
-  setFullName,
   phoneNumber1,
   setPhoneNumber1,
   phoneNumber2,
@@ -44,21 +38,6 @@ export default function ExportFieldRenderer({
           variable={barNumber}
           setVariable={setBarNumber}
           name={"Bar Number"}
-        />
-        <ExportInputRow
-          variable={firstName}
-          setVariable={setFirstName}
-          name={"First Name"}
-        />
-        <ExportInputRow
-          variable={lastName}
-          setVariable={setLastName}
-          name={"Last Name"}
-        />
-        <ExportInputRow
-          variable={fullName}
-          setVariable={setFullName}
-          name={"Full Name"}
         />
         <ExportInputRow
           variable={phoneNumber1}

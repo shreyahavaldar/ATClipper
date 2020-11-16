@@ -11,7 +11,7 @@ from datetime import datetime
 import pandas as pd
 import copy
 import csv
-
+import sys
 
 class ATClipper():
     def __init__(self, db_credentials):
@@ -276,12 +276,8 @@ class ATClipper():
             self.identifiers = data
 
         def load_csv_string(self,string):
-            reader = csv.reader(string)
-            data = list(reader)
-            self.identifiers = data
-
-
-
+            df = pd.read_csv(string)
+            self.identifiers =  set(map(lambda f: f.strip(),df.columns.tolist()))
 
 
     class query_worker(threading.Thread):
@@ -307,8 +303,8 @@ class ATClipper():
 
     def parallel_query(self,Import_Obj,time_start, time_end,num_threads=50,query_type = "email"):
         num_threads = min(len(Import_Obj.identifiers),num_threads)
-        time_start = datetime.strptime(time_start, '%d/%m/%y')
-        time_end = datetime.strptime(time_end, '%d/%m/%y')
+        # time_start = datetime.strptime(time_start, '%d/%m/%y')
+        # time_end = datetime.strptime(time_end, '%d/%m/%y')
         print(time_start,time_end)
 
         if (query_type == "email"):

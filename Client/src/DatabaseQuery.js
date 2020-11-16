@@ -38,9 +38,6 @@ export default function DatabaseQuery({ jurisdiction_list }) {
 
   //State to store the value of each primary field (true if we want to export that field)
   const [barNumber, setBarNumber] = useState(true);
-  const [firstName, setFirstName] = useState(true);
-  const [lastName, setLastName] = useState(true);
-  const [fullName, setFullName] = useState(true);
   const [phoneNumber1, setPhoneNumber1] = useState(true);
   const [phoneNumber2, setPhoneNumber2] = useState(true);
   const [email1, setEmail1] = useState(true);
@@ -57,6 +54,15 @@ export default function DatabaseQuery({ jurisdiction_list }) {
   //State to store the error button class
   const [errorButtonClass, setErrorButtonClass] = useState("");
 
+  //Download the js file
+  function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
+
   //Once the user clicks search process their request
   function search() {
     //If the file is not defined, add a button error class
@@ -68,22 +74,23 @@ export default function DatabaseQuery({ jurisdiction_list }) {
 
     //Generate the export settings json object
     let export_settings = {
-      barNumber: barNumber,
-      firstName: firstName,
-      lastName: lastName,
-      fullName: fullName,
-      phoneNumber1: phoneNumber1,
-      phoneNumber2: phoneNumber2,
+      bar_number: barNumber,
+      name: true,
+      phone1: phoneNumber1,
+      phone2: phoneNumber2,
       email1: email1,
       email2: email2,
       address1: address1,
       address2: address2,
-      dateOfAdmission: dateOfAdmission,
+      doa: dateOfAdmission,
       firm: firm,
       fax: fax,
       license: license,
       status: status,
-      secondaryInfo: secondaryInfo,
+      secondary_info: secondaryInfo,
+      state: true,
+      time_inserted: true,
+      time_superseded: true,
     };
 
     //Create the form data object
@@ -110,6 +117,7 @@ export default function DatabaseQuery({ jurisdiction_list }) {
         console.log(data);
         setProcessing(false);
         setProcessed(true);
+        download(JSON.stringify(data.result), "result.json", "text/plain");
       });
   }
 
@@ -124,6 +132,9 @@ export default function DatabaseQuery({ jurisdiction_list }) {
           buttonString={buttonString}
           setButtonString={setButtonString}
           errorButtonClass={errorButtonClass}
+          tooltipString={
+            "Upload a CSV file containing phone numbers or emails to query by"
+          }
         />
         <JurisdictionInputRow
           jurisdiction={jurisdiction}
@@ -144,12 +155,6 @@ export default function DatabaseQuery({ jurisdiction_list }) {
         <ExportFieldRenderer
           barNumber={barNumber}
           setBarNumber={setBarNumber}
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          fullName={fullName}
-          setFullName={setFullName}
           phoneNumber1={phoneNumber1}
           setPhoneNumber1={setPhoneNumber1}
           phoneNumber2={phoneNumber2}
