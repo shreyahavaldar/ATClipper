@@ -7,6 +7,10 @@ from pathlib import Path
 from libratom.lib.pff import PffArchive
 import threading
 import queue
+from datetime import datetime
+import pandas as pd
+import copy
+
 
 class ATClipper():
     def __init__(self, db_credentials):
@@ -27,7 +31,7 @@ class ATClipper():
         self.cursor.callproc("createtable")
 
     def upload_mapping(self,state,year,mapping):
-        sql = "Insert into mapping values (?,?,?)"
+        sql = "replace into mapping values (?,?,?)"
         try:
             self.cursor.execute(sql,(state,year,json.dumps(mapping)))
             self.connector.commit()
@@ -38,7 +42,6 @@ class ATClipper():
         sql = "select * from mapping"
         try:
             self.cursor.execute(sql)
-            #self.connector.commit()
         except mariadb.Error as e:
             print(f"Error: {e}")
         result = []
@@ -65,12 +68,10 @@ class ATClipper():
 
     def upload_attorneys(self,attorney_obj):
         sql = "Insert into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-        data = []
         insert = []
         with open(attorney_obj) as data:
            attorneys = json.load(data)
         for each in attorneys:
-           # insert += tuple(map(lambda f: f.lstrip().rstrip().replace("'", "")))
             insert += [
                 (each['BarNumberIndex'].lstrip().rstrip().replace("'", ""),
                 each['BarNumberIndex'].lstrip().rstrip().replace("'", "")[3:],
@@ -88,11 +89,9 @@ class ATClipper():
                 each['Status'].lstrip().rstrip().replace("'", ""),
                 each['BarNumberIndex'][0:2].lstrip().rstrip().replace("'", ""),
                 each['SecondaryInfo'])]
-        print(insert)
         try:
             self.cursor.executemany(sql,insert)
 
-        #self.connector.commit()
         except mariadb.Error as e:
             print(f"Error: {e}")
 
@@ -106,24 +105,11 @@ class ATClipper():
             self.sql = sql
 
         def run(self):
-            query_ids = []
-            matches = []
-            #print(len(self.data))
-            #for each in self.data:
-            #    print(each)
             self.cur.executemany(self.sql, self.data)
-            #     for all in self.cur:
-            #        matches += [all]
-            #print(matches)
-            #self.join()
-            #self.q += matches
-
             self.conn.close()
-            #return matches
 
     def parallel_upload(self,attorney_obj,Num_Of_threads):
-        sql = "Replace into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-        data = []
+        sql = "replace into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         insert = []
         with open(attorney_obj) as data:
             attorneys = json.load(data)
@@ -150,11 +136,10 @@ class ATClipper():
             # looping till length l
             for i in range(0, len(l), n):
                 yield l[i:i + n]
-        #print(len(Import_Obj.identifiers))
-        data_list = list(divide_chunks(list(insert),int(len(insert)/Num_Of_threads)))
+        data_list = list(divide_chunks(list(insert),max(int(len(insert)/Num_Of_threads),1)))
         my_queue = []
         threads = []
-        for i in range(Num_Of_threads):
+        for chunk in data_list:
             conn = mariadb.connect(
                 user=self.credentials['user'],
                 password=self.credentials['password'],
@@ -162,11 +147,12 @@ class ATClipper():
                 database=self.credentials['database']
             )
             cur = conn.cursor()
-            threads.append(self.upload_worker(conn, cur,sql,my_queue,data_list[i]))
+            threads.append(self.upload_worker(conn, cur,sql,my_queue,chunk))
         for each in threads:
             each.start()
         for each in threads:
             each.join()
+        return len(insert)
 
     def query(self,Import_Obj):
         sql = "SELECT * from attorney where email1 = ? OR email2 = ?"
@@ -180,11 +166,43 @@ class ATClipper():
 
         return matches
 
+    class Result:
+        def __init__(self,queried_identifiers,scope_start,scope_end,matches):
+            self.queried_identifiers = queried_identifiers
+            self.scope_start = scope_start
+            self.scope_end = scope_end
+            self.matches = matches
+
+        def export(self,exclude = None,columns = None):
+            headers = ["bar_number_index"
+                    ,"bar_number"
+                    ,"name"
+                    ,"doa"
+                    ,"phone1"
+                    ,"phone2"
+                    ,"email1"
+                    ,"email2"
+                    ,"address1"
+                    ,"address2"
+                    ,"firm"
+                    ,"fax"
+                    ,"license"
+                    ,"status"
+                    ,"state"
+                    ,"secondary_info","time_inserted","time_superseded"]
+
+            cols_to_export = copy.copy(headers)
+            if exclude != None:
+                for each in exclude:
+                    cols_to_export.remove(each)
+
+            print(cols_to_export)
+            print(pd.DataFrame(self.matches,columns=headers)[cols_to_export])
+
+
 
     class Import:
-        def __init__(self, scope_start,scope_end):
-           self.scope_start = scope_start
-           self.scope_end = scope_end
+        def __init__(self):
            self.identifiers = []
            self.corpus = []
 
@@ -211,7 +229,6 @@ class ATClipper():
         def load_pst(self,filename):
 
             mailbox_path = Path()
-            print(mailbox_path.absolute())
 
 
             report = {'Files': 0, 'Messages': 0, 'Attachments': 0, 'Size': 0, 'Errors': 0}
@@ -259,46 +276,42 @@ class ATClipper():
 
 
     class query_worker(threading.Thread):
-        def __init__(self, conn, cur, my_queue,data,query_type = "email"):
+        def __init__(self, conn, cur, my_queue,data,sql):
             threading.Thread.__init__(self)
             self.conn = conn
             self.cur = cur
             self.q = my_queue
             self.data = data
-            self.query_type = query_type
+            self.sql = sql
 
         def run(self):
 
-            if(self.query_type == "email"):
-                sql = "SELECT * from dev.attorney where dev.attorney.email1 = ? OR dev.attorney.email1 = ?"
-            else:
-                sql = "SELECT * from dev.attorney where phone1 = ? OR phone1 = ?"
-            query_ids  = []
-            matches = []
-            # print(len(self.data))
+
             for each in self.data:
-                self.cur.execute(sql, tuple([each, each]))
+                self.cur.execute(self.sql, tuple([each, each]))
                 for all in self.cur:
                     self.q.put(all)
-            # print(matches)
-            # self.join()
-            #self.q += (matches)
-
-
             self.conn.close()
-            # return matches
 
 
 
 
-    def parallel_query(self,Import_Obj,num_threads):
+    def parallel_query(self,Import_Obj,time_start, time_end,num_threads=50,query_type = "email"):
         num_threads = min(len(Import_Obj.identifiers),num_threads)
+        time_start = datetime.strptime(time_start, '%d/%m/%y')
+        time_end = datetime.strptime(time_end, '%d/%m/%y')
+        print(time_start,time_end)
+
+        if (query_type == "email"):
+            sql = "SELECT *,Row_Start,Row_end from dev.attorney FOR SYSTEM_TIME BETWEEN '" + str(time_start) + "' and '" + str(time_end) + "' where dev.attorney.email1 = ? OR dev.attorney.email1 = ?"
+        else:
+            sql = "SELECT * from dev.attorney where phone1 = ? OR phone1 = ?"# between = " #+ time_start+ "and" + time_end"
+
+        print(sql)
         def divide_chunks(l, n):
             # looping till length l
             for i in range(0, len(l), n):
-                #print(l[i:i + n])
                 yield l[i:i + n]
-        #print(len(Import_Obj.identifiers))
         data_list = list(divide_chunks(list(Import_Obj.identifiers),max(int(len(Import_Obj.identifiers)/num_threads),1)))
         my_queue = queue.Queue()
         threads = []
@@ -310,16 +323,11 @@ class ATClipper():
                 database=self.credentials['database']
             )
             cur = conn.cursor()
-            thread = self.query_worker(conn, cur,my_queue,data_list[i])
+            thread = self.query_worker(conn, cur,my_queue,data_list[i],sql)
             thread.deamon = True
             threads.append(thread)
         for each in threads:
             each.start()
         for each in threads:
             each.join()
-        #print(my_queue.queue)
-        return list(my_queue.queue)
-
-
-
-        #return print(my_queue.get())
+        return self.Result(Import_Obj.identifiers,str(time_start),str(time_end),list(my_queue.queue))
