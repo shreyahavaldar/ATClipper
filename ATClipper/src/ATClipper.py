@@ -7,11 +7,10 @@ from pathlib import Path
 from libratom.lib.pff import PffArchive
 import threading
 import queue
-from datetime import datetime
 import pandas as pd
 import copy
 import csv
-import sys
+from datetime import datetime
 
 class ATClipper():
     def __init__(self, db_credentials):
@@ -74,22 +73,22 @@ class ATClipper():
            attorneys = json.load(data)
         for each in attorneys:
             insert += [
-                (each['BarNumberIndex'].lstrip().rstrip().replace("'", ""),
-                each['BarNumberIndex'].lstrip().rstrip().replace("'", "")[3:],
-                each['Name'].lstrip().rstrip().replace("'", ""),
-                each['DateOfAdmission'].lstrip().rstrip().replace("'", ""),
-                each['Phone1'].lstrip().rstrip().replace("'", ""),
-                each['Phone2'].lstrip().rstrip().replace("'", ""),
-                each['Email1'].lstrip().rstrip().replace("'", ""),
-                each['Email2'].lstrip().rstrip().replace("'", ""),
-                each['Address1'].lstrip().rstrip().replace("'", ""),
-                each['Address2'].lstrip().rstrip().replace("'", ""),
-                each['Firm'].lstrip().rstrip().replace("'", ""),
-                each['Fax'].lstrip().rstrip().replace("'", ""),
-                each['License'].lstrip().rstrip().replace("'", ""),
-                each['Status'].lstrip().rstrip().replace("'", ""),
-                each['BarNumberIndex'][0:2].lstrip().rstrip().replace("'", ""),
-                each['SecondaryInfo'])]
+                (each['State'].lstrip().rstrip().replace("'", ""),
+                 each['BarNumber'].lstrip().rstrip().replace("'", ""),
+                 each['Name'].lstrip().rstrip().replace("'", ""),
+                 each['DateOfAdmission'].lstrip().rstrip().replace("'", ""),
+                 each['Phone1'].lstrip().rstrip().replace("'", ""),
+                 each['Phone2'].lstrip().rstrip().replace("'", ""),
+                 each['Email1'].lstrip().rstrip().replace("'", ""),
+                 each['Email2'].lstrip().rstrip().replace("'", ""),
+                 each['Address1'].lstrip().rstrip().replace("'", ""),
+                 each['Address2'].lstrip().rstrip().replace("'", ""),
+                 each['Firm'].lstrip().rstrip().replace("'", ""),
+                 each['Fax'].lstrip().rstrip().replace("'", ""),
+                 each['License'].lstrip().rstrip().replace("'", ""),
+                 each['Status'].lstrip().rstrip().replace("'", ""),
+                 str(each['SecondaryInfo']))]
+
         try:
             self.cursor.executemany(sql,insert)
 
@@ -110,14 +109,14 @@ class ATClipper():
             self.conn.close()
 
     def parallel_upload(self,attorney_obj,Num_Of_threads):
-        sql = "replace into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        sql = "replace into attorney values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         insert = []
         with open(attorney_obj) as data:
             attorneys = json.load(data)
         for each in attorneys:
             insert += [
-                (each['BarNumberIndex'].lstrip().rstrip().replace("'", ""),
-                 each['BarNumberIndex'].lstrip().rstrip().replace("'", "")[3:],
+                (each['State'].lstrip().rstrip().replace("'", ""),
+                 each['BarNumber'].lstrip().rstrip().replace("'", ""),
                  each['Name'].lstrip().rstrip().replace("'", ""),
                  each['DateOfAdmission'].lstrip().rstrip().replace("'", ""),
                  each['Phone1'].lstrip().rstrip().replace("'", ""),
@@ -130,7 +129,6 @@ class ATClipper():
                  each['Fax'].lstrip().rstrip().replace("'", ""),
                  each['License'].lstrip().rstrip().replace("'", ""),
                  each['Status'].lstrip().rstrip().replace("'", ""),
-                 each['BarNumberIndex'][0:2].lstrip().rstrip().replace("'", ""),
                  str(each['SecondaryInfo']))]
 
         def divide_chunks(l, n):
@@ -175,7 +173,7 @@ class ATClipper():
             self.matches = matches
 
         def export(self,exclude = None,columns = None):
-            headers = ["bar_number_index"
+            headers = ["state"
                     ,"bar_number"
                     ,"name"
                     ,"doa"
@@ -189,7 +187,6 @@ class ATClipper():
                     ,"fax"
                     ,"license"
                     ,"status"
-                    ,"state"
                     ,"secondary_info",
                     "time_inserted",
                     "time_superseded"]
@@ -301,16 +298,21 @@ class ATClipper():
 
 
 
-    def parallel_query(self,Import_Obj,time_start, time_end,num_threads=50,query_type = "email"):
+    def parallel_query(self,Import_Obj,time_start, time_end,state = "Any",num_threads=50,query_type = "email"):
         num_threads = min(len(Import_Obj.identifiers),num_threads)
-        # time_start = datetime.strptime(time_start, '%d/%m/%y')
-        # time_end = datetime.strptime(time_end, '%d/%m/%y')
+        time_start = datetime.strptime(time_start, '%d/%m/%y')
+        time_end = datetime.strptime(time_end, '%d/%m/%y')
         print(time_start,time_end)
 
-        if (query_type == "email"):
-            sql = "SELECT *,Row_Start,Row_end from dev.attorney FOR SYSTEM_TIME BETWEEN '" + str(time_start) + "' and '" + str(time_end) + "' where dev.attorney.email1 = ? OR dev.attorney.email1 = ?"
+        if (state != "Any"):
+            sql = "SELECT * from (select *,Row_start,Row_end from dev.attorney FOR SYSTEM_TIME BETWEEN '" + str(time_start)  + "' and '"+ str(time_end) + "' where dev.attorney.state = '"+ state +"' ) as t"
         else:
-            sql = "SELECT * from dev.attorney where phone1 = ? OR phone1 = ?"# between = " #+ time_start+ "and" + time_end"
+            sql = "SELECT *,Row_Start,Row_end from dev.attorney FOR SYSTEM_TIME BETWEEN '" + str(time_start) + "' and '" + str(time_end) + "'"
+
+        if (query_type == "email"):
+            sql += " where email1 = ? OR email2 = ?"
+        else:
+            sql += " where phone1 = ? OR phone2 = ?"
 
         print(sql)
         def divide_chunks(l, n):

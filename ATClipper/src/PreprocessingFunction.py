@@ -1,21 +1,38 @@
 import pandas as pd
 from tkinter import filedialog
 import json
+from multiprocessing import  Pool
+import numpy as np
 
 API_KEY = "AIzaSyDX5Yq0nB81RRdqTVe6SQN2WEy8CM_XmLw"
 # ------------ Minor Helper Functions --------------
 
-def processAddress(columns, df):
-    if(len(columns) == 1):
-        return (dataframe.iloc[:, columns[0]])
+
+
+def processAddress(df):
+    if(len(df) == 1):
+        return df.applymap(lambda f: f.strip()).agg(' '.join, axis=1)
     else:
-        addresses = []
-        for x in range(len(dataframe)):
-            address_temp = ""
-            for c in columns:
-                address_temp += str(dataframe.loc[x][c]).strip() + " "
-            addresses.append(address_temp.strip())
+        #print(df)
+        df = pd.DataFrame(df)
+        addresses = df.applymap(lambda f: f.strip()).agg(' '.join, axis=1)
+        #print(addresses)
+
+        # for x in range(len(dataframe)):
+        #     address_temp = ""
+        #     for c in columns:
+        #         address_temp += str(dataframe.loc[x][c]).strip() + " "
+        #     addresses.append(address_temp.strip())
+
         return addresses
+
+def parallelize_processAddress(df, n_cores):
+    df_split = np.array_split(df, n_cores)
+    pool = Pool(n_cores)
+    df = pd.concat(pool.map(processAddress,df_split))
+    pool.close()
+    pool.join()
+    return df.tolist()
 
 def processName(columns, df):
     if(len(columns) == 1):
@@ -93,13 +110,13 @@ def normalizeAddress(address):
 # ------------ Reading the Dataframe --------------
 
 def readDataFrame(mapping, dataframe):
-    barNumberIndexes = []
+    barNumber = []
     if(mapping["barNum"][0] != -1):
         for barNum in (dataframe.iloc[:, mapping["barNum"][0]]):
-            barNumberIndexes.append(stateName + "_" + str(barNum))
+            barNumber.append(str(barNum))
     else:
         for i in range(len(dataframe)):
-            barNumberIndexes.append("0")
+            barNumber.append("0")
 
     datesOfAdmission = []
     if(mapping["dateOfAdmission"][0] != -1):
@@ -168,14 +185,15 @@ def readDataFrame(mapping, dataframe):
 
     addresses1 = []
     if(mapping["address1"][0] != -1):
-        addresses1 = processAddress(mapping["address1"], dataframe)
+        addresses1 = parallelize_processAddress(dataframe.iloc[:,mapping["address1"]],16)
+
     else:
         for i in range(len(dataframe)):
             addresses1.append("0")
 
     addresses2 = []
     if(mapping["address2"][0] != -1):
-        addresses2 = processAddress(mapping["address2"], dataframe)
+        addresses2 = parallelize_processAddress(dataframe.iloc[:,mapping["address2"]],16)
     else:
         for i in range(len(dataframe)):
             addresses2.append("0")
@@ -226,8 +244,8 @@ def readDataFrame(mapping, dataframe):
 
     # JSON output
     class Attorney:
-        def __init__(self, BarNumberIndex, DateOfAdmission, FirstName, LastName, Name, Phone1, Phone2, Email1, Email2, Address1, Address2, Firm, Fax, License, Status, SecondaryInfo):
-            self.BarNumberIndex = BarNumberIndex
+        def __init__(self, State, BarNumber, DateOfAdmission, FirstName, LastName, Name, Phone1, Phone2, Email1, Email2, Address1, Address2, Firm, Fax, License, Status, SecondaryInfo):
+            self.BarNumber = BarNumber
             self.DateOfAdmission = DateOfAdmission
             self.FirstName = FirstName
             self.LastName = LastName
@@ -243,14 +261,20 @@ def readDataFrame(mapping, dataframe):
             self.License = License
             self.Status = Status
             self.SecondaryInfo = SecondaryInfo
+            self.State = State
 
     def obj_dict(obj):
         return obj.__dict__
 
     Attorneys = []
     for i in range(len(dataframe)):
-        temp = Attorney(barNumberIndexes[i], datesOfAdmission[i], firstNames[i], lastNames[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], json.loads(secondaryInfo[i]))
-        Attorneys.append(temp)
+        try:
+            temp = Attorney(stateName, barNumber[i], datesOfAdmission[i], firstNames[i], lastNames[i], names[i], phones1[i], phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i], statuses[i], json.loads(secondaryInfo[i]))
+            Attorneys.append(temp)
+        except:
+            print(stateName, barNumber[i], datesOfAdmission[i], firstNames[i], lastNames[i], names[i], phones1[i],
+                  phones2[i], emails1[i], emails2[i], addresses1[i], addresses2[i], firms[i], faxes[i], licenses[i],
+                  statuses[i], json.loads(secondaryInfo[i]))
 
     json_string = json.dumps(Attorneys, default=obj_dict)
 
@@ -263,23 +287,23 @@ def readDataFrame(mapping, dataframe):
 
 # ------------ Main Call --------------
 
-# mapping = {
-#   "barNum": [1],
-#   "dateOfAdmission" : [2],
-#   "firstName": [-1],
-#   "lastName": [-1],
-#   "name" : [5, 4],
-#   "phone1" : [15],
-#   "phone2" : [-1],
-#   "email1" : [17],
-#   "email2" : [-1],
-#   "address1" : [7,8,9,10,11,12],
-#   "address2" : [-1],
-#   "firm" : [18],
-#   "fax" : [16],
-#   "license" : [-1],
-#   "status" : [6]
-# }
+mapping = {
+  "barNum": [0],
+  "dateOfAdmission" : [1],
+  "firstName": [4],
+  "lastName": [3],
+  "name" : [2],
+  "phone1" : [15],
+  "phone2" : [-1],
+  "email1" : [16],
+  "email2" : [-1],
+  "address1" : [7,8,9,10,11],
+  "address2" : [-1],
+  "firm" : [17],
+  "fax" : [15],
+  "license" : [-1],
+  "status" : [5]
+}
 
 def processMappedFile(mapping, fileName, jurisdiction):
     global dataframe
@@ -288,4 +312,4 @@ def processMappedFile(mapping, fileName, jurisdiction):
     stateName = jurisdiction
     readDataFrame(mapping, dataframe)
 
-#processMappedFile(mapping)
+processMappedFile(mapping,'/home/jcfdz/PycharmProjects/ATClipper-Fix/Sample_files/CA all_attys_2019-11-07.xlsx','CA')
