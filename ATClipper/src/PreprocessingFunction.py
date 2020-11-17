@@ -312,4 +312,4 @@ def processMappedFile(mapping, fileName, jurisdiction):
     stateName = jurisdiction
     readDataFrame(mapping, dataframe)
 
-processMappedFile(mapping,'/home/jcfdz/PycharmProjects/ATClipper-Fix/Sample_files/CA all_attys_2019-11-07.xlsx','CA')
+# processMappedFile(mapping,'/home/jcfdz/PycharmProjects/ATClipper-Fix/Sample_files/CA all_attys_2019-11-07.xlsx','CA')

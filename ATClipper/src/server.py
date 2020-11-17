@@ -6,6 +6,8 @@ import json
 import sys
 from ATClipper import ATClipper
 
+import json
+
 app = Flask(__name__)
 CORS(app)
 
@@ -42,15 +44,15 @@ def query():
         importer = ATClipperObj.Import()
 
         importer.load_csv_string(file)
-        result = ATClipperObj.parallel_query(importer,startDate,endDate,50,query_type=query)
-        # result = result.export(toNotExport)
-        return {"result": result.matches}
+        result = ATClipperObj.parallel_query(importer,startDate,endDate,num_threads=50,query_type=query)
+        result = result.export(toNotExport)
+        resultList = result.to_json()
+
+        return {"result": json.loads(resultList), "response": "success"}
 
     except:
         print("Unexpected error:", sys.exc_info()[0])
         return {"response": 'failure'}
-
-    return {"response": "success"}
 
 @app.route('/add', methods=['POST'])
 def add():

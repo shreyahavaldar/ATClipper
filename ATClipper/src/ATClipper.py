@@ -199,6 +199,8 @@ class ATClipper():
             print(cols_to_export)
             print(pd.DataFrame(self.matches,columns=headers)[cols_to_export])
 
+            return pd.DataFrame(self.matches,columns=headers)[cols_to_export]
+
 
 
     class Import:
@@ -300,8 +302,8 @@ class ATClipper():
 
     def parallel_query(self,Import_Obj,time_start, time_end,state = "Any",num_threads=50,query_type = "email"):
         num_threads = min(len(Import_Obj.identifiers),num_threads)
-        time_start = datetime.strptime(time_start, '%d/%m/%y')
-        time_end = datetime.strptime(time_end, '%d/%m/%y')
+        # time_start = datetime.strptime(time_start, '%d/%m/%y')
+        # time_end = datetime.strptime(time_end, '%d/%m/%y')
         print(time_start,time_end)
 
         if (state != "Any"):

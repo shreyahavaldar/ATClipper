@@ -70,6 +70,9 @@ export default function DatabaseAddition({ jurisdiction_list }) {
   //Loading state
   const [loadingString, setLoadingString] = useState("Next");
 
+  //Result of query string message
+  const [resultString, setResultString] = useState("");
+
   //Update settings based on user uploaded settings file
   function updateSettings(settings) {
     //Convert short settings format to extended long settings format
@@ -338,7 +341,9 @@ export default function DatabaseAddition({ jurisdiction_list }) {
         setProcessing(false);
         setProcessed(true);
         if (data.response === "success") {
-          console.log(data);
+          setResultString("Query was successful");
+        } else {
+          setResultString("Query was not successful. Please try again");
         }
       });
   }
@@ -455,6 +460,7 @@ export default function DatabaseAddition({ jurisdiction_list }) {
         <h3>Database Addition</h3>
         <hr className="small-hr" />
         <h4>Processed</h4>
+        <div>{resultString}</div>
         <SettingsDownloadRow
           settings={newSettings}
           date={date.toJSON().slice(0, 10)}

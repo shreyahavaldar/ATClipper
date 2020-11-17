@@ -54,6 +54,9 @@ export default function DatabaseQuery({ jurisdiction_list }) {
   //State to store the error button class
   const [errorButtonClass, setErrorButtonClass] = useState("");
 
+  //Result of query string message
+  const [resultString, setResultString] = useState("");
+
   //Download the js file
   function download(content, fileName, contentType) {
     const a = document.createElement("a");
@@ -113,11 +116,15 @@ export default function DatabaseQuery({ jurisdiction_list }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        //Wait for the response and step to the final page
-        console.log(data);
         setProcessing(false);
         setProcessed(true);
-        download(JSON.stringify(data.result), "result.json", "text/plain");
+        //Wait for the response and step to the final page
+        if (data.response === "success") {
+          setResultString("Query was successful");
+          download(JSON.stringify(data.result), "result.json", "text/plain");
+        } else {
+          setResultString("Query was not successful. Please try again");
+        }
       });
   }
 
@@ -203,6 +210,7 @@ export default function DatabaseQuery({ jurisdiction_list }) {
         <h3>Database Query</h3>
         <hr className="small-hr" />
         <h4>Processed</h4>
+        <div>{resultString}</div>
       </div>
     );
   } else {
