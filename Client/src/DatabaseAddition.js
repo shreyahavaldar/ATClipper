@@ -340,10 +340,13 @@ export default function DatabaseAddition({ jurisdiction_list }) {
         //Advance to processed page
         setProcessing(false);
         setProcessed(true);
+        console.log(data);
         if (data.response === "success") {
-          setResultString("Query was successful");
+          setResultString("Database addition was successful");
         } else {
-          setResultString("Query was not successful. Please try again");
+          setResultString(
+            "Database addition was not successful. Please try again"
+          );
         }
       });
   }
